@@ -1,10 +1,8 @@
--# navigation styled for Bootstrap 3.0
 .container
-  %nav.navbar.navbar-dark.bg-inverse
-    %ul.nav.navbar-nav.clearfix
-      %li.nav-item
-        %button.navbar-toggler.hidden-sm-up.nav-link{"aria-controls" => "exCollapsingNavbar2", "aria-expanded" => "false", "aria-label" => "Toggle navigation", "data-target" => "#exCollapsingNavbar2", "data-toggle" => "collapse", :type => "button"}
-          \ &#9776;
-    #exCollapsingNavbar2.collapse.navbar-toggleable-xs
-      = link_to "Rails bootstrap", root_path, class: 'navbar-brand'
-      %ul.nav.navbar-nav= render 'layouts/navigation_links'
+  %nav.navbar.navbar-toggleable-md.navbar-light.bg-faded
+    %button.navbar-toggler.navbar-toggler-right{"aria-controls" => "navbarTogglerDemo02", "aria-expanded" => "false", "aria-label" => "Toggle navigation", "data-target" => "#navbarTogglerDemo02", "data-toggle" => "collapse", :type => "button"}
+      %span.navbar-toggler-icon
+    %a.navbar-brand{:href => "#"} Navbar
+    #navbarTogglerDemo02.collapse.navbar-collapse
+      %ul.navbar-nav.mr-auto.mt-2.mt-md-0
+        = render 'layouts/nav_links_for_auth'
