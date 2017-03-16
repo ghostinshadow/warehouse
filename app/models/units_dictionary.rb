@@ -1,0 +1,2 @@
+class UnitsDictionary < Dictionary
+end

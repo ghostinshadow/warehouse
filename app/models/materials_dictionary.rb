@@ -1,0 +1,2 @@
+class MaterialsDictionary < Dictionary
+end

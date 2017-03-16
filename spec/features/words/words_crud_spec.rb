@@ -6,6 +6,7 @@ feature 'CRUD', :devise do
   before(:each) do
     @user = create(:user)
     login_as(@user, scope: :user)
+    @dictionary = create(:materials_dictionary)
   end
 
   after(:each) do
@@ -15,7 +16,7 @@ feature 'CRUD', :devise do
   scenario 'view all words' do
     word = create(:square_meter)
 
-    visit words_path
+    visit dictionary_words_path(word.dictionary)
 
     expect(page).to have_content(word.body)
   end
@@ -58,21 +59,28 @@ feature 'CRUD', :devise do
     be_on_edit_page
   end
 
-  scenario 'raise not found for not existing' do
+  scenario 'raise not found for not existing id' do
     id = 999
 
-    expect{visit edit_word_path(id: id)}.to raise_error( ActionController::RoutingError)
+    expect{visit edit_dictionary_word_path(@dictionary, id: id)}
+    .to raise_error( ActionController::RoutingError)
+  end
+
+  scenario 'raise not found for not existing dictionary' do
+    id = 84
+    expect{visit edit_dictionary_word_path(dictionary_id: id, id: id)}
+    .to raise_error( ActionController::RoutingError)
   end
 
   def create_word(word_body)
-    visit words_path
+    visit dictionary_words_path(@dictionary)
     click_link "New word"
     fill_in('Body', :with => word_body)
     click_button "Create word"
   end
 
   def update_word(new_body)
-    visit words_path
+    visit dictionary_words_path(@dictionary)
     click_link "Edit word"
     fill_in("Body", with: new_body)
     click_button "Update word"

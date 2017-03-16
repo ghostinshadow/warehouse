@@ -1,5 +1,6 @@
 class WordsController < ApplicationController
   before_action :set_word, only: [:edit, :update, :delete]
+  before_action :set_dictionary
   
   def index
     @words = Word.all
@@ -10,9 +11,9 @@ class WordsController < ApplicationController
   end
 
   def create
-    @word = Word.create(word_params)
+    @word = @dictionary.words.create(word_params)
     if @word.save
-      redirect_to words_path
+      redirect_to dictionary_words_path(@dictionary)
     else
       flash[:error] = @word.errors.messages.to_s
       render :new
@@ -24,7 +25,7 @@ class WordsController < ApplicationController
 
   def update
     if @word.update_attributes(word_params)
-      redirect_to words_path, notice: "Successfully updated"
+      redirect_to dictionary_words_path(@dictionary), notice: "Successfully updated"
     else
       flash[:error] = @word.errors.messages.to_s
       render :edit
@@ -32,6 +33,11 @@ class WordsController < ApplicationController
   end
 
   private
+
+  def set_dictionary
+    @dictionary = Dictionary.find_by(id: params[:dictionary_id])
+    raise ActionController::RoutingError.new('Not Found') unless @dictionary
+  end
 
   def set_word
     @word = Word.find_by(id: params[:id])

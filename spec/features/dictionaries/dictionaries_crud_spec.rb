@@ -12,12 +12,18 @@ feature 'CRUD', :devise do
     Warden.test_reset!
   end
 
-  scenario 'view all dictionaries' do
-    dictionary = create(:dictionary)
-
+  scenario 'view unit type dictionary' do
+    dictionary = create(:units_dictionary)
     visit dictionaries_path 
 
-    expect(page).to have_content(dictionary.name)
+    expect(page).to have_content(dictionary.title)
+  end
+
+  scenario 'view materials dictionary' do
+    dictionary = create(:materials_dictionary)
+    visit dictionaries_path 
+
+    expect(page).to have_content(dictionary.title)
   end
 
   # scenario 'create dictionary' do

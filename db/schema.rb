@@ -10,10 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170315210706) do
+ActiveRecord::Schema.define(version: 20170316133622) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "dictionaries", force: :cascade do |t|
+    t.string   "type",        limit: 20
+    t.string   "title",       limit: 100
+    t.integer  "words_count"
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -36,8 +44,9 @@ ActiveRecord::Schema.define(version: 20170315210706) do
 
   create_table "words", force: :cascade do |t|
     t.string   "body"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.integer  "dictionary_id"
   end
 
 end
