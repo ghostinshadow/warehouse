@@ -1,0 +1,9 @@
+%h3= "Words"
+
+%table#words
+  %thead
+    %th= "Name"
+    %th= "Actions"
+  %tbody
+    = render @words
+= link_to "New word", new_word_path, class: "btn btn-success"
