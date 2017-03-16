@@ -1,6 +1,7 @@
 class WordsController < ApplicationController
-  before_action :set_word, only: [:edit, :update, :delete]
+  before_action :set_word, only: [:edit, :update, :destroy]
   before_action :set_dictionary
+  decorates_assigned :dictionary
   
   def index
     @words = Word.all
@@ -30,6 +31,11 @@ class WordsController < ApplicationController
       flash[:error] = @word.errors.messages.to_s
       render :edit
     end
+  end
+
+  def destroy
+    @word.destroy
+    redirect_to dictionary_words_path(@dictionary), notice: "Successfully deleted"
   end
 
   private

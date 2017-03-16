@@ -31,7 +31,8 @@ gem 'haml-rails'
 gem 'therubyracer', :platform=>:ruby
 gem 'thin'
 gem 'pg'
-# gem "draper"
+gem "draper"
+gem 'activemodel-serializers-xml', git: 'https://github.com/rails/activemodel-serializers-xml'
 # gem "active-admin"
 
 group :development do
@@ -67,4 +68,5 @@ group :test do
   gem 'database_cleaner'
   gem 'launchy'
   gem 'selenium-webdriver'
+  gem 'poltergeist'
 end

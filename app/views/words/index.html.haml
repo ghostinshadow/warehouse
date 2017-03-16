@@ -1,9 +1,9 @@
 %h3= "Words"
-
+= dictionary.word_dictionary_path
 %table#words
   %thead
     %th= "Name"
     %th= "Actions"
   %tbody
     = render @words
-= link_to "New word", new_dictionary_word_path(@dictionary), class: "btn btn-success"
+= link_to "New word", new_dictionary_word_path(dictionary), class: "btn btn-success"

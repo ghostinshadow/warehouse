@@ -12,7 +12,7 @@ feature 'CRUD', :devise do
     Warden.test_reset!
   end
 
-  scenario 'view unit type dictionary' do
+  scenario 'view dictionaries' do
     dictionary = create(:units_dictionary)
     visit dictionaries_path 
 
@@ -26,68 +26,53 @@ feature 'CRUD', :devise do
     expect(page).to have_content(dictionary.title)
   end
 
-  # scenario 'create dictionary' do
-  #   dictionary_name = "m3"
-  #   create_dictionary(dictionary_name)
+  scenario 'edit existing dictionary' do
+    dictionary = create(:materials_dictionary)
+    new_name = "materials new"
 
-  #   expect(page).to have_content(dictionary_name)
-  # end
+    update_dictionary(new_name)
 
-  # scenario 'impossible to create empty dictionary' do
-  #   create_dictionary('')
+    within_table("dictionaries") do
+      expect(page).to have_content(new_name)
+    end
+  end
 
-  #   expect(page).to have_content("New dictionary")
-  # end
+  scenario 'impossible to update with empty' do
+    dictionary = create(:units_dictionary)
 
-  # scenario 'display validation messages for empty dictionary' do
-  #   create_dictionary('')
+    update_dictionary('')
 
-  #   expect(page).to have_content("can't be blank")
-  # end
+    be_on_edit_page
+  end
 
-  # scenario 'edit existing dictionary' do
-  #   dictionary = create(:square_meter)
-  #   new_name = "cubic"
+  scenario 'raise not found for not existing' do
+    id = 999
 
-  #   update_dictionary(new_name)
+    expect{visit edit_dictionary_path(id: id)}.to raise_error( ActionController::RoutingError)
+  end
 
-  #   within_table("dictionaries") do
-  #     expect(page).to have_content(new_name)
-  #   end
-  # end
+  scenario 'show dictionary words', js: true do
+    dictionary = create(:units_dictionary)
+    word_name = "Inner word"
+    dictionary.words << Word.new(body: word_name)
 
-  # scenario 'impossible to update with empty' do
-  #   dictionary = create(:square_meter)
+    visit dictionaries_path
+    click_link "Words"
 
-  #   update_dictionary('')
+    expect(page).to have_content(word_name)
+  end
 
-  #   be_on_edit_page
-  # end
+  def update_dictionary(new_name)
+    visit dictionaries_path
+    click_link "Edit dictionary"
+    fill_in("Title", with: new_name)
+    click_button "Update dictionary"
+  end
 
-  # scenario 'raise not found for not existing' do
-  #   id = 999
-
-  #   expect{visit edit_dictionary_path(id: id)}.to raise_error( ActionController::RoutingError)
-  # end
-
-  # def create_dictionary(dictionary_name)
-  #   visit dictionaries_path
-  #   click_link "New dictionary"
-  #   fill_in('Name', :with => dictionary_name)
-  #   click_button "Create dictionary"
-  # end
-
-  # def update_dictionary(new_name)
-  #   visit dictionaries_path
-  #   click_link "Edit dictionary"
-  #   fill_in("Name", with: new_name)
-  #   click_button "Update dictionary"
-  # end
-
-  # def be_on_edit_page
-  #   within("h3") do
-  #     expect(page).to have_content("Edit dictionary")
-  #   end
-  # end
+  def be_on_edit_page
+    within("h3") do
+      expect(page).to have_content("Edit dictionary")
+    end
+  end
 
 end

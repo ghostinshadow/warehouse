@@ -1,2 +1,6 @@
-%h1 Dictionaries#edit
-%p Find me in app/views/dictionaries/edit.html.haml
+%h3= "Edit dictionary"
+= form_for(@dictionary.becomes(Dictionary), class: 'form-control') do |f|
+  = f.label :title
+  = f.text_field :title
+
+  = f.submit "Update dictionary", class: 'btn btn-success'

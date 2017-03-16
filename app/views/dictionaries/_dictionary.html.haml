@@ -1,4 +1,5 @@
 %tr
   %td= dictionary.title
   %td= link_to "Words", dictionary_words_path(dictionary), class: "btn btn-info"
-  %td= link_to "Edit", edit_dictionary_path(dictionary), class: "btn btn-warning"
+  %td
+    = link_to "Edit dictionary", edit_dictionary_path(dictionary), class: "btn btn-warning"

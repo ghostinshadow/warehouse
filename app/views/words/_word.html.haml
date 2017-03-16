@@ -1,4 +1,7 @@
 %tr
   %td= word.body
   %td
-    = link_to "Edit word", edit_dictionary_word_path(@dictionary, word), class: "btn btn-info"
+    - if word.subtype_dictionary
+      = link_to "Subcategories", dictionary_words_path(word.subtype_dictionary), class: "btn btn-info"
+    = link_to "Edit word", edit_dictionary_word_path(dictionary, word), class: "btn btn-info"
+    = link_to "Delete", dictionary_word_path(dictionary, word), method: :delete, data: { confirm: "Are you sure?" } , class: "btn btn-danger"

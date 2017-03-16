@@ -1,3 +1,4 @@
+require "rails_helper"
 include Warden::Test::Helpers
 Warden.test_mode!
 # Feature: CRUD
@@ -43,11 +44,19 @@ feature 'CRUD', :devise do
   scenario 'edit existing word' do
     word = create(:square_meter)
     new_body = "cubic"
-
     update_word(new_body)
-
     within_table("words") do
       expect(page).to have_content(new_body)
+    end
+  end
+
+  scenario 'delete existing possible with im sure' do
+    word = create(:square_meter)
+    visit dictionary_words_path(@dictionary)
+    click_link "Delete"
+
+    within_table("words") do
+      expect(page).not_to have_content(word.body)
     end
   end
 
@@ -60,16 +69,27 @@ feature 'CRUD', :devise do
   end
 
   scenario 'raise not found for not existing id' do
-    id = 999
 
-    expect{visit edit_dictionary_word_path(@dictionary, id: id)}
+    expect{visit_edit_page_for_not_existing_record}
     .to raise_error( ActionController::RoutingError)
+    
   end
 
   scenario 'raise not found for not existing dictionary' do
-    id = 84
-    expect{visit edit_dictionary_word_path(dictionary_id: id, id: id)}
+    
+    expect{visit_words_index_for_not_existing_dictionary}
     .to raise_error( ActionController::RoutingError)
+    
+  end
+
+  def visit_words_index_for_not_existing_dictionary
+    id = 84
+    visit dictionary_words_path(dictionary_id: id)
+  end
+
+  def visit_edit_page_for_not_existing_record
+    id = 999
+    visit edit_dictionary_word_path(@dictionary, id: id)
   end
 
   def create_word(word_body)
