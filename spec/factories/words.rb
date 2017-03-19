@@ -9,5 +9,28 @@ FactoryGirl.define do
     factory :cubic_meter do
       body "m3"
     end
+
+    factory :metal do
+      body "metal"
+      after(:create) do |word|
+        create(:subcategory_dictionary, word: word)
+      end
+    end
+
+    factory :thin_metal do
+      body "5mm"
+    end
+
+    factory :thick_metal do
+      body "20mm"
+    end
+
+    factory :human_work do
+      body "Human work"
+    end
+
+    factory :human_hours do
+      body "h/h"
+    end
   end
 end

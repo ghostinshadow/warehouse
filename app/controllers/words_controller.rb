@@ -4,7 +4,7 @@ class WordsController < ApplicationController
   decorates_assigned :dictionary
   
   def index
-    @words = Word.all
+    @words = @dictionary.words
   end
 
   def new
@@ -36,6 +36,11 @@ class WordsController < ApplicationController
   def destroy
     @word.destroy
     redirect_to dictionary_words_path(@dictionary), notice: "Successfully deleted"
+  end
+
+  def subtypes
+    word = Word.find_by(id: params[:id]) || NoWord.new
+    @subtype_dictionary = word.subtype_dictionary
   end
 
   private

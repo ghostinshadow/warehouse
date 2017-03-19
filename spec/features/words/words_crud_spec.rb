@@ -41,7 +41,7 @@ feature 'CRUD', :devise do
     expect(page).to have_content("can't be blank")
   end
 
-  scenario 'edit existing word' do
+  scenario 'edit existing word', js: true do
     word = create(:square_meter)
     new_body = "cubic"
     update_word(new_body)
@@ -101,6 +101,7 @@ feature 'CRUD', :devise do
 
   def update_word(new_body)
     visit dictionary_words_path(@dictionary)
+    page.save_screenshot
     click_link "Edit word"
     fill_in("Body", with: new_body)
     click_button "Update word"

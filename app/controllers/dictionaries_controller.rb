@@ -1,7 +1,7 @@
 class DictionariesController < ApplicationController
   before_action :set_dictionary, only: [:edit, :show, :update]
   def index
-    @dictionaries = Dictionary.all
+    @dictionaries = Dictionary.all.high_level
   end
 
   def update

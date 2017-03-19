@@ -1,0 +1,2 @@
+class CountableResource < Resource
+end

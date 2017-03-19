@@ -1,0 +1,2 @@
+class CountlessResource < Resource
+end

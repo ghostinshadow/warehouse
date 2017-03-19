@@ -23,15 +23,15 @@ feature 'CRUD', :devise do
     header_is_a("Words")
   end
 
-  scenario "go back to dictionaries from subcategories", js: true do
+  scenario "go back to words from subcategories", js: true do
     dictionary = @dictionary.becomes(MaterialsDictionary)
+    dictionary = dictionary.decorate
     word = dictionary.words.create(body: "m2")
-
     go_to_subcategories(dictionary)
-    page.save_screenshot
-    click_link "Back to dictionaries"
 
-    header_is_a("Dictionaries")
+    click_link "Back to materials"
+
+    header_is_a("Words")
   end
 
   scenario "UnitDictionary word has no subcategory words" do

@@ -31,9 +31,13 @@ gem 'haml-rails'
 gem 'therubyracer', :platform=>:ruby
 gem 'thin'
 gem 'pg'
-gem "draper"
+gem 'draper', github: 'drapergem/draper'
 gem 'activemodel-serializers-xml', git: 'https://github.com/rails/activemodel-serializers-xml'
 # gem "active-admin"
+
+source 'https://rails-assets.org' do
+  gem 'rails-assets-tether', '>= 1.1.0'
+end
 
 group :development do
   gem 'better_errors'

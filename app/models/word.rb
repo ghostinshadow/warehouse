@@ -8,7 +8,7 @@ class Word < ApplicationRecord
   private
 
   def init_subtype_dictionary
-    title = "#{self.body}: #{I18n.t("company.dictionaries.resources.category_subtypes")}"
+    title = "#{self.body}: Типи"
     self.create_subtype_dictionary(title: title,
                                                  type: "CategorySubtypes")
   end

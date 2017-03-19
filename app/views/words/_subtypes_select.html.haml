@@ -1,0 +1,1 @@
+= select_tag 'resource[category_id]', options_for_select(@subtype_dictionary.words.map{|c| [c.body, c.id]}), include_blank: t('.choose_category'), class: "btn btn-primary btn-round"

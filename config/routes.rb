@@ -3,7 +3,13 @@ Rails.application.routes.draw do
 
   devise_for :users
   resources :dictionaries, except: [:new, :create, :delete, :destroy] do
-    resources :words
+    resources :words do
+      member do
+        get :subtypes
+      end
+    end
   end
+
+  resources :resources
   root 'welcome#index'
 end

@@ -1,0 +1,13 @@
+%h3= "Resources"
+%table
+  %thead
+    %th= t('resources.name')
+    %th= t('resources.category')
+    %th= t('resources.unit')
+    %th= t('resources.price_uah')
+    %th= t('resources.price_usd')
+    %th= t('resources.price_eur')
+    %th= t('resources.count')
+  %tbody
+    = render @resources
+= link_to "New resource", new_resource_path, class: "btn btn-info"

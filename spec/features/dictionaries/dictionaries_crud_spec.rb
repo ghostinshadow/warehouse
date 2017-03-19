@@ -19,6 +19,13 @@ feature 'CRUD', :devise do
     expect(page).to have_content(dictionary.title)
   end
 
+  scenario 'show materials and units' do
+    create_all_types_of_dictionaries
+    visit dictionaries_path
+
+    expect(page).not_to have_content("Subcategories")
+  end
+
   scenario 'view materials dictionary' do
     dictionary = create(:materials_dictionary)
     visit dictionaries_path 
@@ -60,6 +67,12 @@ feature 'CRUD', :devise do
     click_link "Words"
 
     expect(page).to have_content(word_name)
+  end
+
+  def create_all_types_of_dictionaries
+    create(:units_dictionary)
+    create(:subcategory_dictionary)
+    create(:materials_dictionary)
   end
 
   def update_dictionary(new_name)
