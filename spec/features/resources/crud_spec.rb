@@ -20,93 +20,108 @@ feature 'CRUD', :devise do
     expect(page).to have_content(resource.name_body)
   end
 
-  scenario 'form fields visible' , js: true do 
-    create(:materials_dictionary)
-    create(:units_dictionary)
+  scenario 'form fields visible' , js: true do
+    create_dictionaries
     visit new_resource_path
-    
+
     labels = all("label").map(&:text)
 
     expect(labels).to include(*new_resource_labels)
   end
 
-  scenario 'create resource', js: true do
-    create(:materials_dictionary)
-    create(:units_dictionary)
-    create_resource
+  scenario 'create resource countable', js: true do
+    create_dictionaries
+    create_countable_resource
 
     expect(page).to have_content("Created successfully")
   end
 
-  # scenario 'impossible to create empty resource' do
-  #   create_resource('')
-
-  #   expect(page).to have_content("New resource")
-  # end
-
-  # scenario 'display validation messages for empty resource' do
-  #   create_resource('')
-
-  #   expect(page).to have_content("can't be blank")
-  # end
-
-  # scenario 'edit existing resource', js: true do
-  #   resource = create(:square_meter)
-  #   new_body = "cubic"
-  #   update_resource(new_body)
-  #   within_table("resources") do
-  #     expect(page).to have_content(new_body)
-  #   end
-  # end
-
-  # scenario 'delete existing possible with im sure' do
-  #   resource = create(:square_meter)
-  #   visit dictionary_resources_path(@dictionary)
-  #   click_link "Delete"
-
-  #   within_table("resources") do
-  #     expect(page).not_to have_content(resource.body)
-  #   end
-  # end
-
-  # scenario 'impossible to update with empty' do
-  #   resource = create(:square_meter)
-
-  #   update_resource('')
-
-  #   be_on_edit_page
-  # end
-
-  # scenario 'raise not found for not existing id' do
-
-  #   expect{visit_edit_page_for_not_existing_record}
-  #   .to raise_error( ActionController::RoutingError)
-    
-  # end
-
-  # scenario 'raise not found for not existing dictionary' do
-    
-  #   expect{visit_resources_index_for_not_existing_dictionary}
-  #   .to raise_error( ActionController::RoutingError)
-    
-  # end
-
-  def visit_resources_index_for_not_existing_dictionary
-    id = 84
-    visit dictionary_resources_path(dictionary_id: id)
+  scenario "create resource countless", js: true do
+    create_dictionaries
   end
+
+  scenario 'impossible to create empty resource', js: true do
+    create_dictionaries
+    visit new_resource_path
+
+    click_button "Save resource"
+
+    expect(page).to have_content("New resource")
+  end
+
+  scenario 'display validation messages for empty resource' do
+    create_dictionaries
+    visit new_resource_path
+
+    click_button "Save resource"
+
+    expect(page).to have_content("must exist")
+  end
+
+  scenario 'edit existing resource', js: true do
+    materials, units = create_dictionaries
+    resource = create(:countable_resource, name: materials.words.first, category: units.words.first)
+    new_price = 999
+
+    update_resource(new_price)
+
+    expect(page).to have_content(new_price)
+  end
+
+  scenario 'delete existing possible with im sure' do
+    resource = create(:countable_resource)
+    visit resources_path
+    click_link "Delete"
+
+    expect(page).to have_content("Destroyed successfully")
+  end
+
+  scenario 'impossible to update with empty' do
+    materials, units = create_dictionaries
+    resource = create(:countable_resource, name: materials.words.first, category: units.words.first)
+
+    visit edit_resource_path(resource)
+    find('#resource_name_id').select(" ")
+    
+    be_on_edit_page
+  end
+
+  scenario 'raise not found for not existing id' do
+
+    expect{visit_edit_page_for_not_existing_record}
+    .to raise_error( ActionController::RoutingError)
+
+  end
+
+  def create_dictionaries
+    m = create(:materials_dictionary)
+    n = create(:units_dictionary)
+    [m, n]
+  end
+
 
   def visit_edit_page_for_not_existing_record
     id = 999
-    visit edit_dictionary_resource_path(@dictionary, id: id)
+    visit edit_resource_path(id: id)
   end
 
-  def create_resource
+  def create_countable_resource
+    create_resource do
+      select('Countable', from: 'resource_type')
+    end
+  end
+
+  def create_countless_resource
+    create_resource do
+      select('Countless', from: 'resource_type')
+    end
+  end
+
+  def create_resource(&block)
     visit resources_path
     click_link "New resource"
-    choose_name_category_unit_type
+    choose_name_category_unit(&block)
     fill_price
-
     click_button "Save resource"
   end
 
@@ -116,18 +131,19 @@ feature 'CRUD', :devise do
     fill_in('resource_price_eur', with: '4.23')
   end
 
-  def choose_name_category_unit_type
+  def choose_name_category_unit
     select('metal', from: 'resource_name_id')
     wait_for_ajax
     select('5mm', from: 'resource_category_id')
     select('m2', from: 'resource_unit_id')
-    select('Countless', from: 'resource_type')
+    yield
   end
 
-  def update_resource
-    visit dictionary_resources_path(@dictionary)
+  def update_resource(new_price)
+    visit resources_path
     click_link "Edit resource"
-    fill_in("Body", with: new_body)
+
+    fill_in("resource_price_usd", with: new_price)
 
     click_button "Update resource"
   end

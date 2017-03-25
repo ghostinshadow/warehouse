@@ -14,12 +14,11 @@ feature 'CRUD', :devise do
     Warden.test_reset!
   end
 
-  scenario "MaterialsDictionary word has subcategory words" do
+  scenario "MaterialsDictionary word has subcategory words", js: true do
     dictionary = @dictionary.becomes(MaterialsDictionary)
     word = dictionary.words.create(body: "m2")
 
     go_to_subcategories(dictionary)
-
     header_is_a("Words")
   end
 
@@ -34,17 +33,18 @@ feature 'CRUD', :devise do
     header_is_a("Words")
   end
 
-  scenario "UnitDictionary word has no subcategory words" do
+  scenario "UnitDictionary word has no subcategory words", js: true do
     dictionary = @dictionary.becomes(UnitsDictionary)
     word = dictionary.words.create(body: "m2")
 
     visit dictionary_words_path(dictionary)
-    expect(page).not_to have_link("Subcategories")
+    
+    expect(find(:xpath, '//table/tbody/tr[2]').text).not_to match("Subcategories")
   end
 
   def go_to_subcategories(dictionary)
     visit dictionary_words_path(dictionary)
-    click_link "Subcategories"
+    first(:link, "Subcategories").click
   end
 
   def header_is_a(word)

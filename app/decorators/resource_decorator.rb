@@ -3,7 +3,8 @@ class ResourceDecorator < Draper::Decorator
 
   %w{ name category unit }.each do |name|
     define_method("#{name}_body") do
-      self.public_send(name).body
+      word = self.public_send(name) || NoWord.new
+      word.body
     end
   end
 

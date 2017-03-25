@@ -1,0 +1,44 @@
+%h3= title
+
+= form_for(@resource, url: url, as: :resource, class: "form-control") do |f|
+  .form-group.row
+    .col-md-4
+      = f.label "Name"
+      = f.collection_select(:name_id, @materials_dictionary.words, :id, :body, {selected: @resource.name_id, include_blank: t('.choose_name')}, {"class": "btn btn-primary btn-round form-control"})
+    .col-md-4
+      = f.label "Category"
+      = select_tag 'resource[category_id]', options_for_select(@subtype_dictionary.options, @resource.category_id), prompt: t('.choose_category'), class: "btn btn-primary btn-round form-control"
+    .col-md-4
+      = f.label "Unit"
+      = f.collection_select(:unit_id, @units_dictionary.words, :id, :body, {selected: @resource.unit_id, include_blank: t('.choose_unit')}, {class: "btn btn-primary btn-round form-control"})
+  .form-group.row
+    .col-md-3
+      = f.label "Type"
+      =  select_tag 'resource[type]', options_for_select(Resource.available_resources, @resource.type), {class: "form-control", disabled: @resource.persisted?}
+    .col-md-3
+      = f.label "Price(uah)"
+      = f.text_field :price_uah,  class: "form-control", mask: :float
+    .col-md-3
+      = f.label "Price(usd)"
+      = f.text_field :price_usd,  class: "form-control", mask: :float
+    .col-md-3
+      = f.label  "Price(eur)"
+      = f.text_field :price_eur,  class: "form-control", mask: :float
+  .form-actions
+    = f.submit submit_button, class: "btn btn-primary btn-round"
+
+:javascript
+  $(document).ready(function(){
+    $('[mask=float]').mask('0ZZZZZ.ZZ', {
+       translation: {
+           'Z': {
+               pattern: /[0-9]/,
+               optional: true
+           }
+       }
+    });
+
+    $("#resource_name_id").change(function(){
+       Helpers.getObjectsFromLocation('/dictionaries/#{@materials_dictionary.id}/words/' + $(this).val() + '/subtypes');
+    })
+  })

@@ -1,2 +1,1 @@
-%h1 Resources#edit
-%p Find me in app/views/resources/edit.html.haml
+= render partial: 'form', locals: {title: "Edit resource", url: resource_path(@resource), submit_button: "Update resource"}

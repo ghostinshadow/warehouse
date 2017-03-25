@@ -8,6 +8,10 @@ class Dictionary < ApplicationRecord
     'dictionaries/dictionary'
   end
 
+  def options
+    words.pluck(:body, :id)
+  end
+
   def subtypes_allowed?
     false
   end
