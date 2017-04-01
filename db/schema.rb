@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170319132721) do
+ActiveRecord::Schema.define(version: 20170327111646) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,6 +24,15 @@ ActiveRecord::Schema.define(version: 20170319132721) do
     t.integer  "word_id"
   end
 
+  create_table "project_prototypes", force: :cascade do |t|
+    t.string   "prototypable_type"
+    t.integer  "prototypable_id"
+    t.string   "name",              limit: 100
+    t.jsonb    "structure"
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
+  end
+
   create_table "resources", force: :cascade do |t|
     t.integer  "name_id"
     t.integer  "category_id"
@@ -35,6 +44,13 @@ ActiveRecord::Schema.define(version: 20170319132721) do
     t.float    "count",                               default: 0.0
     t.datetime "created_at",                                          null: false
     t.datetime "updated_at",                                          null: false
+  end
+
+  create_table "shippings", force: :cascade do |t|
+    t.string   "package_variant", limit: 20
+    t.date     "shipping_date"
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
   end
 
   create_table "users", force: :cascade do |t|

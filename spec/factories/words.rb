@@ -17,6 +17,21 @@ FactoryGirl.define do
       end
     end
 
+    factory :bottom do
+      body "bottom"
+      after(:create) do |word|
+        create(:subcategory_dictionary, word: word)
+      end
+    end
+
+    factory :bottom_5 do
+      body "500mm"
+    end
+
+    factory :bottom_7 do
+      body "700mm"
+    end
+
     factory :thin_metal do
       body "5mm"
     end

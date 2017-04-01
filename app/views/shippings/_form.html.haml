@@ -1,0 +1,24 @@
+%h3= title
+= link_to "Add resource", '#', onclick: "addDeviceMapping('#{ structure_elements_new_path}')", class: 'btn-sm btn-success pull-right'  
+
+= form_for(@shipping, url: url, class: "form-control") do |f|
+  .row
+    .col
+      = f.label "Shipping date"
+      = f.text_field :shipping_date, class: 'datepicker form-control'
+    .col
+      = f.label "Type"
+      =  select_tag 'shipping[package_variant]', options_for_select(Shipping::AVAILABLE_TYPES, @shipping.package_variant), {class: "form-control", disabled: @shipping.persisted?}
+  .row
+    .col
+      = label_tag "Name"
+      = text_field_tag "project_prototype[name]", class: "form-control"
+    %br                
+    .input_templates
+  %br
+  %hr
+  .form-actions
+    = f.submit submit_button, class: "btn btn-primary btn-round"
+
+= javascript_include_tag("resource_managing")
+

@@ -13,7 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require jquery.mask
-//= require turbolinks
 //= require tether
 //= require bootstrap-sprockets
-//= require_tree .
+//= require bootstrap-datepicker.min
+//= require helpers

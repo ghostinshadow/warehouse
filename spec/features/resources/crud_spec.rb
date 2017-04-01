@@ -38,6 +38,9 @@ feature 'CRUD', :devise do
 
   scenario "create resource countless", js: true do
     create_dictionaries
+    create_countless_resource
+
+    expect(page).to have_content("Created successfully")
   end
 
   scenario 'impossible to create empty resource', js: true do

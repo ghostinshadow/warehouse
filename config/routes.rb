@@ -1,4 +1,12 @@
 Rails.application.routes.draw do
+  get 'structure_elements/new'
+
+  get 'shippings/index'
+
+  get 'shippings/new'
+
+  get 'shippings/edit'
+
   get 'welcome/index'
 
   devise_for :users
@@ -9,7 +17,7 @@ Rails.application.routes.draw do
       end
     end
   end
-
+  resources :shippings
   resources :resources
   root 'welcome#index'
 end

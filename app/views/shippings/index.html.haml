@@ -1,0 +1,9 @@
+%h3= "Shippings"
+
+%table.table
+  %thead
+    %th=  "Type"
+    %th=  "Shipping date"
+  %tbody
+    = render @shippings
+= link_to "New shipping", new_shipping_path, class: 'btn btn-info'

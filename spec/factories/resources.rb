@@ -12,6 +12,13 @@ FactoryGirl.define do
       association :unit, factory: :cubic_meter
     end
 
+    factory :countable_resource_bottom do
+      type "CountableResource"
+      association :name, factory: :bottom
+      association :category, factory: :bottom_5
+      association :unit, factory: :square_meter
+    end
+
     factory :countless_resource do
         type "CountlessResource"
         association :name, factory: :human_work
