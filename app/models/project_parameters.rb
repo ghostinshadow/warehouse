@@ -1,36 +1,34 @@
 class ProjectParameters
   include ActiveModel::Model
+  attr_reader :name, :structure
 
   validates_presence_of :name
-  validates :structure_check
 
   def initialize(hsh = {})
     @name = hsh.fetch(:name)
-    @structure = {}
-    binding.pry
+    @structure = hsh.fetch(:structure, {})
+    structure_check
+    restructure
+  end
+
+  def to_attributes
+    {name: name, structure: structure}
   end
 
   private
 
+  def restructure
+  	grouped = structure.group_by {|k, v| k.match(/_(\d+)/)[1] }
+    @structure = grouped.inject({}) do |acc, (k, v)|
+      id, number = v.map(&:last)
+      acc[id] = number
+      acc
+    end
+  end
+
   def structure_check
+    @structure.delete_if do |k, v|
+     !k.match(/resource_id_\d+?/) &&  !k.match(/resource_name_\d+?/)
+   end
   end
 end
-
-
-  
-
-  attr_reader :date, :type_id, :buildings, :tags, :hdd_edge
-
-  validates_presence_of :date, :type_id, :buildings, message: I18n.t('all_fildz')
-
-  def initialize(hsh={})
-    @date = hsh[:analysis_date].try(:to_date)
-    @type_id = hsh[:type_id]
-    @tags = hsh[:tags]
-    @buildings = hsh[:buildings]
-    @hdd_edge = hsh.fetch(:hdd_edge, HDD_CONST)
-  end
-
-  def error_messages
-    errors.messages.inject({}){|acc, (k,v)| acc[I18n.t("incoming_orders.#{k}")] = v; acc }
-  end

@@ -12,6 +12,21 @@ class Resource < ApplicationRecord
     all.map{|r| [r.name_body, r.id]}
   end
 
+  def self.add_resources(shipping)
+
+  end
+
+  def self.remove_resources(shipping)
+  end
+
+  def <<(num)
+    self.count += BigDecimal(num)
+  end
+
+  def >>(num)
+    self.count -= BigDecimal(num)
+  end
+
   def name_body
     name.body
   end

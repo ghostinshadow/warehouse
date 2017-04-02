@@ -36,11 +36,10 @@ feature 'CRUD', :devise do
     expect(page).to have_content("Shipping created")
   end
 
-  scenario 'create shipping income', js: true do
+  scenario 'create shipping outcome', js: true do
     create_resources
     create_shipping{ select('OutcomePackage', from: 'shipping_package_variant') }
 
-    page.save_screenshot
     expect(page).to have_content("Shipping created")
   end
 
@@ -51,6 +50,30 @@ feature 'CRUD', :devise do
     click_button "Save shipping"
 
     expect(page).to have_content("can't be blank")
+  end
+
+  scenario 'shipping save should change resource count', js: true do
+    resource1, resource2 = create_resources
+
+    visit new_shipping_path
+    create_shipping{ select('IncomePackage', from: 'shipping_package_variant') }
+    resource1.reload
+    resource2.reload
+
+    expect(resource1.count).to eq(BigDecimal('8.2'))
+    expect(resource2.count).to eq(BigDecimal('6.5'))
+  end
+
+  scenario 'outcoming shipping save should change resource count', js: true do
+    resource1, resource2 = create_resources
+
+    visit new_shipping_path
+    create_shipping{ select('OutcomePackage', from: 'shipping_package_variant') }
+    resource1.reload
+    resource2.reload
+
+    expect(resource1.count).to eq(BigDecimal('-5.2'))
+    expect(resource2.count).to eq(BigDecimal('-3.5'))
   end
 
 
@@ -80,8 +103,9 @@ feature 'CRUD', :devise do
   # end
 
   def create_resources
-    create(:countable_resource_bottom)
-    create(:countable_resource)
+    r1 = create(:countable_resource_bottom)
+    r2 = create(:countable_resource)
+    [r1, r2]
   end
 
 
@@ -113,8 +137,8 @@ feature 'CRUD', :devise do
     @count ||= 1
     click_link "Add resource"
     wait_for_ajax
-    select(option, from: "project_prototype_resource_id_#{@count}")
-    fill_in("project_prototype_resource_name_#{@count}", with: value)
+    select(option, from: "project_prototype_structure_resource_id_#{@count}")
+    fill_in("project_prototype_structure_resource_name_#{@count}", with: value)
     @count += 1
   end
 

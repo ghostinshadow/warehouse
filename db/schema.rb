@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170327111646) do
+ActiveRecord::Schema.define(version: 20170402172218) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -38,12 +38,12 @@ ActiveRecord::Schema.define(version: 20170327111646) do
     t.integer  "category_id"
     t.string   "type"
     t.integer  "unit_id"
-    t.decimal  "price_uah",   precision: 5, scale: 2, default: "0.0"
-    t.decimal  "price_usd",   precision: 5, scale: 2, default: "0.0"
-    t.decimal  "price_eur",   precision: 5, scale: 2, default: "0.0"
-    t.float    "count",                               default: 0.0
-    t.datetime "created_at",                                          null: false
-    t.datetime "updated_at",                                          null: false
+    t.decimal  "price_uah",   precision: 5,  scale: 2, default: "0.0"
+    t.decimal  "price_usd",   precision: 5,  scale: 2, default: "0.0"
+    t.decimal  "price_eur",   precision: 5,  scale: 2, default: "0.0"
+    t.decimal  "count",       precision: 10, scale: 2, default: "0.0", null: false
+    t.datetime "created_at",                                           null: false
+    t.datetime "updated_at",                                           null: false
   end
 
   create_table "shippings", force: :cascade do |t|

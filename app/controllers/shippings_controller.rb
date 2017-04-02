@@ -10,12 +10,15 @@ class ShippingsController < ApplicationController
   end
 
   def create
-    ProjectParameters.new(project_prototype_params)
+    project_params = ProjectParameters.new(project_prototype_params)
+    project_params.valid?
+
     @shipping = Shipping.new(shipping_params) do |s|
-      s.project_prototype = ProjectPrototype.new(project_prototype_params)
+      s.project_prototype = ProjectPrototype.new(project_params.to_attributes)
     end
+    
     if @shipping.save
-      @shipping
+      @shipping.process_package
       redirect_to shippings_path, notice: "Shipping created"
     else
       flash[:error] = @shipping.errors.messages.to_s
@@ -33,7 +36,7 @@ class ShippingsController < ApplicationController
   end
 
   def project_prototype_params
-    params.require(:project_prototype)
+    params.require(:project_prototype).to_unsafe_h
   end
 
 end
