@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :activities
   get 'structure_elements/new'
 
   get 'shippings/index'

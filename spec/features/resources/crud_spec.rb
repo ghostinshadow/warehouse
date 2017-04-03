@@ -1,8 +1,9 @@
 include Warden::Test::Helpers
 Warden.test_mode!
 # Feature: CRUD
-feature 'CRUD', :devise do
-
+feature 'CRUD', :resources do
+  include_context "resource activities"
+  
   before(:each) do
     @user = create(:user)
     login_as(@user, scope: :user)
@@ -96,59 +97,9 @@ feature 'CRUD', :devise do
 
   end
 
-  def create_dictionaries
-    m = create(:materials_dictionary)
-    n = create(:units_dictionary)
-    [m, n]
-  end
-
-
   def visit_edit_page_for_not_existing_record
     id = 999
     visit edit_resource_path(id: id)
-  end
-
-  def create_countable_resource
-    create_resource do
-      select('Countable', from: 'resource_type')
-    end
-  end
-
-  def create_countless_resource
-    create_resource do
-      select('Countless', from: 'resource_type')
-    end
-  end
-
-  def create_resource(&block)
-    visit resources_path
-    click_link "New resource"
-    choose_name_category_unit(&block)
-    fill_price
-    click_button "Save resource"
-  end
-
-  def fill_price
-    fill_in('resource_price_uah', with: '45.23')
-    fill_in('resource_price_usd', with: '2.23')
-    fill_in('resource_price_eur', with: '4.23')
-  end
-
-  def choose_name_category_unit
-    select('metal', from: 'resource_name_id')
-    wait_for_ajax
-    select('5mm', from: 'resource_category_id')
-    select('m2', from: 'resource_unit_id')
-    yield
-  end
-
-  def update_resource(new_price)
-    visit resources_path
-    click_link "Edit resource"
-
-    fill_in("resource_price_usd", with: new_price)
-
-    click_button "Update resource"
   end
 
   def be_on_edit_page

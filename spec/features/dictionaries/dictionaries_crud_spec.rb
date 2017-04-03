@@ -1,7 +1,8 @@
 include Warden::Test::Helpers
 Warden.test_mode!
 # Feature: CRUD
-feature 'CRUD', :devise do
+feature 'CRUD', :dictionaries do
+  include_context "dictionary activities"
 
   before(:each) do
     @user = create(:user)
@@ -73,13 +74,6 @@ feature 'CRUD', :devise do
     create(:units_dictionary)
     create(:subcategory_dictionary)
     create(:materials_dictionary)
-  end
-
-  def update_dictionary(new_name)
-    visit dictionaries_path
-    click_link "Edit dictionary"
-    fill_in("Title", with: new_name)
-    click_button "Update dictionary"
   end
 
   def be_on_edit_page

@@ -13,6 +13,7 @@ class ResourcesController < ApplicationController
   def create
     @resource = Resource.new(resource_params)
     if @resource.save
+      track_activity(@resource)
       redirect_to resources_path, notice: 'Created successfully'
     else
       flash[:error] = @resource.errors.messages.to_s
@@ -25,6 +26,7 @@ class ResourcesController < ApplicationController
 
   def update
     if @resource.update_attributes(resource_params)
+      track_activity(@resource)
       redirect_to resources_path, notice: 'Updated successfully'
     else
       flash[:error] = @resource.errors.messages.to_s
@@ -34,6 +36,7 @@ class ResourcesController < ApplicationController
 
   def destroy
     @resource.destroy
+    track_activity(@resource)
     redirect_to resources_path, notice: 'Destroyed successfully'
   end
 

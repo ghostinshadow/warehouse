@@ -2,7 +2,8 @@ require "rails_helper"
 include Warden::Test::Helpers
 Warden.test_mode!
 # Feature: CRUD
-feature 'CRUD', :devise do
+feature 'CRUD', :words do
+  include_context "word activities"
 
   before(:each) do
     @user = create(:user)
@@ -52,8 +53,7 @@ feature 'CRUD', :devise do
 
   scenario 'delete existing possible with im sure' do
     word = create(:square_meter)
-    visit dictionary_words_path(@dictionary)
-    click_link "Delete"
+    delete_word
 
     within_table("words") do
       expect(page).not_to have_content(word.body)
@@ -82,6 +82,7 @@ feature 'CRUD', :devise do
     
   end
 
+
   def visit_words_index_for_not_existing_dictionary
     id = 84
     visit dictionary_words_path(dictionary_id: id)
@@ -90,20 +91,6 @@ feature 'CRUD', :devise do
   def visit_edit_page_for_not_existing_record
     id = 999
     visit edit_dictionary_word_path(@dictionary, id: id)
-  end
-
-  def create_word(word_body)
-    visit dictionary_words_path(@dictionary)
-    click_link "New word"
-    fill_in('Body', :with => word_body)
-    click_button "Create word"
-  end
-
-  def update_word(new_body)
-    visit dictionary_words_path(@dictionary)
-    click_link "Edit word"
-    fill_in("Body", with: new_body)
-    click_button "Update word"
   end
 
   def be_on_edit_page

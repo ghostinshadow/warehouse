@@ -11,6 +11,10 @@ class IncomePackage
     ProjectPrototype.find_by(prototypable_type: "Shipping", prototypable_id: @shipping_id)
   end
 
+  def type_name
+    "прихід"
+  end
+
   def process_package
     project_prototype.structure.each do |resource_id, resource_num|
       r = Resource.find_by(id: resource_id)

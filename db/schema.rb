@@ -10,10 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170402172218) do
+ActiveRecord::Schema.define(version: 20170403121010) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "activities", force: :cascade do |t|
+    t.integer  "user_id"
+    t.string   "action"
+    t.string   "trackable_type"
+    t.integer  "trackable_id"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+    t.index ["trackable_type", "trackable_id"], name: "index_activities_on_trackable_type_and_trackable_id", using: :btree
+    t.index ["user_id"], name: "index_activities_on_user_id", using: :btree
+  end
 
   create_table "dictionaries", force: :cascade do |t|
     t.string   "type",        limit: 20
@@ -79,4 +90,5 @@ ActiveRecord::Schema.define(version: 20170402172218) do
     t.integer  "dictionary_id"
   end
 
+  add_foreign_key "activities", "users"
 end

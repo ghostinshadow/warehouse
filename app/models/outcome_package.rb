@@ -7,6 +7,10 @@ class OutcomePackage
     Shipping.find_by(id: @shipping_id)
   end
 
+  def type_name
+    "розхід"
+  end
+
   def project_prototype
     ProjectPrototype.find_by(prototypable_type: "Shipping", prototypable_id: @shipping_id)
   end

@@ -19,6 +19,7 @@ class ShippingsController < ApplicationController
     
     if @shipping.save
       @shipping.process_package
+      track_activity(@shipping)
       redirect_to shippings_path, notice: "Shipping created"
     else
       flash[:error] = @shipping.errors.messages.to_s
@@ -31,6 +32,7 @@ class ShippingsController < ApplicationController
     raise ActionController::RoutingError.new('Not Found') unless shipping
     shipping.reverse_package
     shipping.destroy
+    track_activity(shipping)
     redirect_to shippings_path, notice: "Destroyed successfully"
   end
 

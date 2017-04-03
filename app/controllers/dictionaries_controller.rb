@@ -6,6 +6,7 @@ class DictionariesController < ApplicationController
 
   def update
     if @dictionary.update_attributes(dictionary_params)
+      track_activity(@dictionary)
       redirect_to dictionaries_path, notice: "Successfully updated"
     else
       flash[:error] = @dictionary.errors.messages.to_s

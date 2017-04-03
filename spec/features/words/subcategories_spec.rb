@@ -2,7 +2,7 @@ require "rails_helper"
 include Warden::Test::Helpers
 Warden.test_mode!
 # Feature: CRUD
-feature 'CRUD', :devise do
+feature 'CRUD', :subcategories do
 
   before(:each) do
     @user = create(:user)

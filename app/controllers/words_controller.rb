@@ -14,6 +14,7 @@ class WordsController < ApplicationController
   def create
     @word = @dictionary.words.create(word_params)
     if @word.save
+      track_activity(@word)
       redirect_to dictionary_words_path(@dictionary)
     else
       flash[:error] = @word.errors.messages.to_s
@@ -26,6 +27,7 @@ class WordsController < ApplicationController
 
   def update
     if @word.update_attributes(word_params)
+      track_activity(@word)
       redirect_to dictionary_words_path(@dictionary), notice: "Successfully updated"
     else
       flash[:error] = @word.errors.messages.to_s
@@ -35,6 +37,7 @@ class WordsController < ApplicationController
 
   def destroy
     @word.destroy
+    track_activity(@word)
     redirect_to dictionary_words_path(@dictionary), notice: "Successfully deleted"
   end
 

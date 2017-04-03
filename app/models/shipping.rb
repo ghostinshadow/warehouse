@@ -8,7 +8,7 @@ class Shipping < ApplicationRecord
   
   accepts_nested_attributes_for :project_prototype
 
-  delegate :process_package, :reverse_package, to: :package
+  delegate :process_package, :reverse_package, :type_name, to: :package
   
   def package
     return NoPackage.new unless persisted? && package_variant?

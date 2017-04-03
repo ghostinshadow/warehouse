@@ -8,4 +8,8 @@ class ResourceDecorator < Draper::Decorator
     end
   end
 
+  def full_name
+    "#{name_body} #{category_body} #{unit_body}"
+  end
+
 end

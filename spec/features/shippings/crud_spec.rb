@@ -1,8 +1,9 @@
 include Warden::Test::Helpers
 Warden.test_mode!
 # Feature: CRUD
-feature 'CRUD', :devise do
-
+feature 'CRUD', :shippings do
+  include_context 'shipping activities'
+  
   before(:each) do
     @user = create(:user)
     login_as(@user, scope: :user)
@@ -103,12 +104,6 @@ feature 'CRUD', :devise do
     .to raise_error( ActionController::RoutingError)
   end
 
-  def create_resources
-    r1 = create(:countable_resource_bottom)
-    r2 = create(:countable_resource)
-    [r1, r2]
-  end
-
   def create_shipping_with_dependencies(resource1, resource2)
     project_prototype = create(:three_materials, structure: {resource1.id => 5, resource2.id => 3})
     shipping = create(:income_shipping, project_prototype: project_prototype)
@@ -121,48 +116,6 @@ feature 'CRUD', :devise do
   def visit_edit_page_for_not_existing_record
     id = 999
     visit edit_shipping_path(id: id)
-  end
-
-  def create_shipping(&block)
-    visit shippings_path
-    click_link "New shipping"
-
-    choose_date_and_type(&block)
-
-    fill_prototype_name("87ui")
-
-    fill_resource("metal", 5)
-
-    fill_resource("bottom", 6.7)
-
-    click_button "Save shipping"
-  end
-
-  def fill_prototype_name(value)
-    fill_in("project_prototype_name", with: value)
-  end
-
-  def fill_resource(option, value)
-    @count ||= 1
-    click_link "Add resource"
-    wait_for_ajax
-    select(option, from: "project_prototype_structure_resource_id_#{@count}")
-    fill_in("project_prototype_structure_resource_name_#{@count}", with: value)
-    @count += 1
-  end
-
-  def choose_date_and_type
-    fill_in( 'shipping_shipping_date', with: '2017-03-273')
-    yield
-  end
-
-  def update_shipping(new_price)
-    visit shippings_path
-    click_link "Edit shipping"
-
-    fill_in("shipping_price_usd", with: new_price)
-
-    click_button "Update shipping"
   end
 
   def be_on_edit_page
