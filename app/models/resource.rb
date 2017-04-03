@@ -19,14 +19,6 @@ class Resource < ApplicationRecord
   def self.remove_resources(shipping)
   end
 
-  def <<(num)
-    self.count += BigDecimal(num)
-  end
-
-  def >>(num)
-    self.count -= BigDecimal(num)
-  end
-
   def name_body
     name.body
   end

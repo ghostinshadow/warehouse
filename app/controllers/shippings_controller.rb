@@ -26,7 +26,12 @@ class ShippingsController < ApplicationController
     end
   end
 
-  def edit
+  def destroy
+    shipping = Shipping.find_by(id: params[:id])
+    raise ActionController::RoutingError.new('Not Found') unless shipping
+    shipping.reverse_package
+    shipping.destroy
+    redirect_to shippings_path, notice: "Destroyed successfully"
   end
 
   private

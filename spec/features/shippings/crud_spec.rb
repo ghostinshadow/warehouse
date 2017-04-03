@@ -69,38 +69,39 @@ feature 'CRUD', :devise do
 
     visit new_shipping_path
     create_shipping{ select('OutcomePackage', from: 'shipping_package_variant') }
-    resource1.reload
-    resource2.reload
+    reload_resources([resource1, resource2])
 
     expect(resource1.count).to eq(BigDecimal('-5.2'))
     expect(resource2.count).to eq(BigDecimal('-3.5'))
   end
 
 
-  # scenario 'delete existing possible with im sure' do
-  #   shipping = create(:countable_shipping)
-  #   visit shippings_path
-  #   click_link "Delete"
+  scenario 'delete existing possible with im sure' do
+    resource1, resource2 = create_resources
+    create_shipping_with_dependencies(resource1, resource2)
 
-  #   expect(page).to have_content("Destroyed successfully")
-  # end
+    visit shippings_path
+    click_link "Delete"
 
-  # scenario 'impossible to update with empty' do
-  #   materials, units = create_dictionaries
-  #   shipping = create(:countable_shipping, name: materials.words.first, category: units.words.first)
+    expect(page).to have_content("Destroyed successfully")
+  end
 
-  #   visit edit_shipping_path(shipping)
-  #   find('#shipping_name_id').select(" ")
+  scenario 'delete should change number of resources' do
+    resource1, resource2 = create_resources
+    create_shipping_with_dependencies(resource1, resource2)
     
-  #   be_on_edit_page
-  # end
+    visit shippings_path
+    click_link "Delete"
+    reload_resources([resource1, resource2])
 
-  # scenario 'raise not found for not existing id' do
+    expect(resource1.count).to eq(BigDecimal('-3.5'))
+    expect(resource2.count).to eq(BigDecimal('-1.5'))
+  end
 
-  #   expect{visit_edit_page_for_not_existing_record}
-  #   .to raise_error( ActionController::RoutingError)
-
-  # end
+  scenario 'raise not found for not existing id' do
+    expect{page.driver.submit :delete, shipping_path(id: 999), nil}
+    .to raise_error( ActionController::RoutingError)
+  end
 
   def create_resources
     r1 = create(:countable_resource_bottom)
@@ -108,6 +109,14 @@ feature 'CRUD', :devise do
     [r1, r2]
   end
 
+  def create_shipping_with_dependencies(resource1, resource2)
+    project_prototype = create(:three_materials, structure: {resource1.id => 5, resource2.id => 3})
+    shipping = create(:income_shipping, project_prototype: project_prototype)
+  end
+
+  def reload_resources(resources)
+    resources.each(&:reload)
+  end
 
   def visit_edit_page_for_not_existing_record
     id = 999

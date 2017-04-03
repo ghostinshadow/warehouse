@@ -3,7 +3,7 @@ FactoryGirl.define do
     package_variant "MyString"
     shipping_date "2017-03-27"
     factory :income_shipping do
-      # association(:project_prototype, factory: :three_materials)
+      association(:project_prototype, factory: :three_materials)
       package_variant "IncomePackage"
     end
 
