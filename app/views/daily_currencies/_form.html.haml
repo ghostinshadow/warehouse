@@ -1,0 +1,26 @@
+%h3= title
+
+= form_for(@daily_currency, url: url, class: "form-control") do |f|
+  .form-group.row
+    .col-md-4
+      = f.label "USD"
+      = f.text_field :usd,  class: "form-control", mask: :float
+    .col-md-4
+      = f.label "EUR"
+      = f.text_field :eur,  class: "form-control", mask: :float
+    .col-md-4
+      = f.label  "Valid on"
+      = f.text_field :valid_on,  class: 'datepicker form-control'
+  .form-actions
+    = f.submit submit_button, class: "btn btn-primary btn-round"
+
+:javascript
+  $(document).ready(function(){
+    $('[mask=float]').mask('0ZZZZZ.ZZ', {
+       translation: {
+           'Z': {
+               pattern: /[0-9]/,
+               optional: true
+           }
+       }
+    });

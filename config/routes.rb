@@ -18,6 +18,7 @@ Rails.application.routes.draw do
       end
     end
   end
+  resources :daily_currencies
   resources :shippings
   resources :resources
   root 'welcome#index'
