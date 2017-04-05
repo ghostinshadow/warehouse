@@ -2,8 +2,8 @@ FactoryGirl.define do
   factory :resource do
     type ""
     price_uah "9.99"
-    price_usd "9.99"
-    price_eur "9.99"
+    price_usd "8.99"
+    price_eur "7.99"
     count 1.5
     factory :countable_resource do
       type "CountableResource"

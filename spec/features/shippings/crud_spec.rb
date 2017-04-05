@@ -127,6 +127,28 @@ feature 'CRUD', :shippings do
     expect(labels).to include("5 m2", "3 m3")
   end
 
+  scenario "should calculate money on show page", js: true do
+    resource1, resource2 = create_resources
+    shipping = create_shipping_with_dependencies(resource1, resource2)
+
+    visit shippings_path
+    click_link "Show"
+
+    expect(page).to have_content("Sum")
+  end
+
+  scenario "should show price in 3 currencies", js: true do
+    resource1, resource2 = create_resources
+    shipping = create_shipping_with_dependencies(resource1, resource2)
+
+    visit shippings_path
+    click_link "Show"
+
+    expect(page).to have_content('79.92')
+    expect(page).to have_content('71.92')
+    expect(page).to have_content('63.92')
+  end
+
   def create_shipping_with_dependencies(resource1, resource2)
     project_prototype = create(:three_materials, structure: {resource1.id => 5, resource2.id => 3})
     create(:income_shipping, project_prototype: project_prototype)

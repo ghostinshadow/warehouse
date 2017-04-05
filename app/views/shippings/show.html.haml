@@ -34,4 +34,20 @@
     .col
 
 
-  
+.row
+  .col
+  .col-6
+    .card.card-inverse.card-warning.mb-3
+      .card-block
+        %h4.card-title= "Sum"
+        .row
+          .col
+            %blockquote.card-blockquote.text-center
+              %h5= @money_calculator.display_currency(:uah)
+          .col
+            %blockquote.card-blockquote.text-center
+              %h5= @money_calculator.display_currency(:usd)
+          .col
+            %blockquote.card-blockquote.text-center
+              %h5= @money_calculator.display_currency(:eur)
+  .col

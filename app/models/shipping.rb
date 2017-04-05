@@ -15,4 +15,8 @@ class Shipping < ApplicationRecord
     @package ||= package_variant.constantize.new(id)
     @package
   end
+
+  def prototype_id
+    project_prototype.id
+  end
 end

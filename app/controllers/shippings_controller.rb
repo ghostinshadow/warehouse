@@ -7,6 +7,7 @@ class ShippingsController < ApplicationController
   end
 
   def show
+    @money_calculator = MoneyCalculator.new({project_prototype_id: @shipping.prototype_id})
   end
 
   def new
