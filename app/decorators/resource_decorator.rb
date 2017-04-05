@@ -9,7 +9,11 @@ class ResourceDecorator < Draper::Decorator
   end
 
   def full_name
-    "#{name_body} #{category_body} #{unit_body}"
+    "#{name_body} #{category_body}"
+  end
+
+  def display_value(value)
+    "#{value} #{unit_body}"
   end
 
 end

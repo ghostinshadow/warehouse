@@ -104,9 +104,32 @@ feature 'CRUD', :shippings do
     .to raise_error( ActionController::RoutingError)
   end
 
+  scenario "should be able to see details of created shipping" do
+    resource1, resource2 = create_resources
+    create_shipping_with_dependencies(resource1, resource2)
+
+    visit shippings_path
+    click_link "Show"
+
+    expect(page).to have_content("Shipping details")
+  end
+
+  scenario "should display all details on show page", js: true do
+    resource1, resource2 = create_resources
+    shipping = create_shipping_with_dependencies(resource1, resource2)
+
+    visit shippings_path
+    click_link "Show"
+    labels = all("h5").map(&:text)
+
+    expect(page).to have_content(shipping.shipping_date.strftime("%d/%m/%Y"))
+    expect(page).to have_content('прихід')
+    expect(labels).to include("5 m2", "3 m3")
+  end
+
   def create_shipping_with_dependencies(resource1, resource2)
     project_prototype = create(:three_materials, structure: {resource1.id => 5, resource2.id => 3})
-    shipping = create(:income_shipping, project_prototype: project_prototype)
+    create(:income_shipping, project_prototype: project_prototype)
   end
 
   def reload_resources(resources)

@@ -1,6 +1,12 @@
 class ShippingsController < ApplicationController
+  before_action :set_shipping, only: [:show, :destroy]
+  decorates_assigned :shipping
+
   def index
     @shippings = Shipping.all
+  end
+
+  def show
   end
 
   def new
@@ -28,15 +34,18 @@ class ShippingsController < ApplicationController
   end
 
   def destroy
-    shipping = Shipping.find_by(id: params[:id])
-    raise ActionController::RoutingError.new('Not Found') unless shipping
-    shipping.reverse_package
-    shipping.destroy
-    track_activity(shipping)
+    @shipping.reverse_package
+    @shipping.destroy
+    track_activity(@shipping)
     redirect_to shippings_path, notice: "Destroyed successfully"
   end
 
   private
+
+  def set_shipping
+    @shipping = Shipping.find_by(id: params[:id])
+    raise ActionController::RoutingError.new('Not Found') unless @shipping
+  end
 
   def shipping_params
     params.require(:shipping).permit(:package_variant, :shipping_date)
