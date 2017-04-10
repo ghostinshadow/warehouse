@@ -23,7 +23,7 @@ class OutcomePackage
     end
   end
 
-  def reverse_package
+  def revert_package
     project_prototype.structure.each do |resource_id, resource_num|
       r = Resource.find_by(id: resource_id)
       r << resource_num

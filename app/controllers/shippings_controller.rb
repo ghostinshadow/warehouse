@@ -35,7 +35,7 @@ class ShippingsController < ApplicationController
   end
 
   def destroy
-    @shipping.reverse_package
+    @shipping.revert_package
     @shipping.destroy
     track_activity(@shipping)
     redirect_to shippings_path, notice: "Destroyed successfully"

@@ -22,6 +22,8 @@ GEM
   remote: https://rubygems.org/
   remote: https://rails-assets.org/
   specs:
+    aasm (4.12.0)
+      concurrent-ruby (~> 1.0)
     actioncable (5.0.2)
       actionpack (= 5.0.2)
       nio4r (>= 1.2, < 3.0)
@@ -366,6 +368,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  aasm
   activemodel-serializers-xml!
   better_errors
   bootstrap (~> 4.0.0.alpha3.1)
