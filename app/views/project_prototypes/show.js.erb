@@ -1,0 +1,5 @@
+<% if @prototype %>
+$('#prototype_template').html('<%= j render "project_prototypes/details" %>')
+<% else %>
+$('#prototype_template').html('')
+<% end %>

@@ -1,0 +1,7 @@
+%tr
+  %td= project.status
+  %td= project.shipping_date
+  %td= project.prototype_name
+  %td
+    = link_to "Show", project_path(project), class: 'btn btn-info'
+    = link_to "Delete", project_path(project), method: :delete, class: 'btn btn-danger', data: {confirm: "Are you sure?"} 

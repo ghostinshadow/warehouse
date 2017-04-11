@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :project_prototype do
-    name "MyString"
+    name "Project 23"
     structure ""
     factory :three_materials do
       structure { {"1": 10, "2": 20} }

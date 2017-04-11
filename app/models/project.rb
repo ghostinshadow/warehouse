@@ -3,7 +3,7 @@ class Project < ApplicationRecord
 
   belongs_to :shipping
 
-  after_create :transition_to_built
+  before_create :transition_to_built
   before_destroy :reset_project
 
   aasm do
@@ -22,10 +22,23 @@ class Project < ApplicationRecord
       transitions from: :approved, to: :completed, guard: :shipping
     end
 
-    event :reset, after: :revert_shippings_package do
-      transitions from: :completed, to: :new, guard: :shipping
+    event :reset do
+      transitions from: :completed, to: :new, guard: :shipping, after: Proc.new {|*args| revert_shippings_package }
+      transitions from: :built, to: :new
     end
 
+  end
+
+  def self.all_states
+    aasm.states.map(&:name)
+  end
+
+  def self.localized_states
+    @@localized_states ||= all_states.inject({}){|acc, state| acc[state] = I18n.t("projects.states.#{state}"); acc}
+  end
+
+  def prototype_id
+    shipping && shipping.prototype_id
   end
 
   private

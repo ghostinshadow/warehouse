@@ -1,0 +1,54 @@
+%h3= title
+.row
+  .col
+  .col-3
+    .card.card-inverse.card-primary.mb-3
+      .card-block
+        %h4.card-title= "Shipping date"
+        %blockquote.card-blockquote.text-center
+          %h5= shipping.shipping_date
+  .col-3
+    .card.card-inverse.card-primary.mb-3
+      .card-block
+        %h4.card-title= "Package"
+        %blockquote.card-blockquote.text-center
+          %h5= shipping.package
+  .col-3
+    .card.card-inverse.card-primary.mb-3
+      .card-block
+        %h4.card-title= "Name"
+        %blockquote.card-blockquote.text-center
+          %h5= shipping.project_name
+
+  .col
+%hr
+- shipping.project_resources.in_groups_of(3, false) do |resources_group|
+  .row
+    .col
+    - resources_group.each do |resource|
+      .col-3
+        .card.card-inverse.card-info.mb-3
+          .card-block
+            %h5.card-title= resource.first
+            %blockquote.card-blockquote.text-center
+              %h5= resource.last
+    .col
+
+
+.row
+  .col
+  .col-6
+    .card.card-inverse.card-warning.mb-3
+      .card-block
+        %h4.card-title= "Sum"
+        .row
+          .col
+            %blockquote.card-blockquote.text-center
+              %h5= money_calculator.display_currency(:uah)
+          .col
+            %blockquote.card-blockquote.text-center
+              %h5= money_calculator.display_currency(:usd)
+          .col
+            %blockquote.card-blockquote.text-center
+              %h5= money_calculator.display_currency(:eur)
+  .col

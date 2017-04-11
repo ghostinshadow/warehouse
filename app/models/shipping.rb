@@ -17,6 +17,10 @@ class Shipping < ApplicationRecord
     @package
   end
 
+  def outcome_package?
+    package_variant == AVAILABLE_TYPES.last
+  end
+
   def prototype_id
     project_prototype.id
   end

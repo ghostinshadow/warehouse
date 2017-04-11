@@ -2,7 +2,8 @@ include Warden::Test::Helpers
 Warden.test_mode!
 # Feature: CRUD
 feature 'CRUD', :projects do
-  
+  include_context 'shipping activities'
+
   before(:each) do
     @user = create(:user)
     login_as(@user, scope: :user)
@@ -12,145 +13,152 @@ feature 'CRUD', :projects do
     Warden.test_reset!
   end
 
-  xscenario 'view all shippings' do
-    project = create(:basic_project)
+  scenario 'view all shippings' do
+    project = Project.create do |p|
+      p.shipping = create(:income_shipping)
+    end
     visit projects_path
 
-    expect(page).to have_content(project.state)
+    expect(page).to have_content("Saved project")
   end
 
-  # scenario 'form fields visible' , js: true do
-  #   visit new_shipping_path
-    
-  #   click_link "Add resource"
-  #   wait_for_ajax
-  #   labels = all("label").map(&:text)
+  scenario 'form fields visible' , js: true do
+    visit new_project_path
 
-  #   expect(labels).to include(*new_shipping_labels)
-  # end
+    click_link "Add resource"
+    wait_for_ajax
+    labels = all("label").map(&:text)
 
-  # scenario 'create shipping income', js: true do
-  #   create_resources
-  #   create_shipping{ select('IncomePackage', from: 'shipping_package_variant') }
+    expect(labels).to include(*new_shipping_labels)
+  end
 
-  #   expect(page).to have_content("Shipping created")
-  # end
+  scenario 'create project manually', js: true do
+    create_resources
+    create_project
 
-  # scenario 'create shipping outcome', js: true do
-  #   create_resources
-  #   create_shipping{ select('OutcomePackage', from: 'shipping_package_variant') }
+    expect(page).to have_content("Project created")
+  end
 
-  #   expect(page).to have_content("Shipping created")
-  # end
+  scenario 'create project using existing prototype', js: true do
+    create_shipping_with_dependencies(*create_resources)
+    create_project_with_implicit_prototype
 
-  # scenario 'display validation messages for empty shipping' do
-  #   create_resources
-  #   visit new_shipping_path
+    expect(page).to have_content("Project created")
+  end
 
-  #   click_button "Save shipping"
+  scenario 'display validation messages for empty shipping' do
+    create_resources
+    visit new_shipping_path
 
-  #   expect(page).to have_content("can't be blank")
-  # end
+    click_button "Save shipping"
 
-  # scenario 'shipping save should change resource count', js: true do
-  #   resource1, resource2 = create_resources
+    expect(page).to have_content("can't be blank")
+  end
 
-  #   visit new_shipping_path
-  #   create_shipping{ select('IncomePackage', from: 'shipping_package_variant') }
-  #   resource1.reload
-  #   resource2.reload
+  describe "created project" do
 
-  #   expect(resource1.count).to eq(BigDecimal('8.2'))
-  #   expect(resource2.count).to eq(BigDecimal('6.5'))
-  # end
+    before(:example) do
+      @project = Project.create do |p|
+        p.shipping = create_shipping_with_dependencies(*create_resources)
+      end
+    end
 
-  # scenario 'outcoming shipping save should change resource count', js: true do
-  #   resource1, resource2 = create_resources
+    scenario 'delete existing possible with im sure' do
 
-  #   visit new_shipping_path
-  #   create_shipping{ select('OutcomePackage', from: 'shipping_package_variant') }
-  #   reload_resources([resource1, resource2])
+      visit projects_path
+      click_link "Delete"
 
-  #   expect(resource1.count).to eq(BigDecimal('-5.2'))
-  #   expect(resource2.count).to eq(BigDecimal('-3.5'))
-  # end
+      expect(page).to have_content("Destroyed successfully")
+    end
 
 
-  # scenario 'delete existing possible with im sure' do
-  #   resource1, resource2 = create_resources
-  #   create_shipping_with_dependencies(resource1, resource2)
+    scenario 'raise not found for not existing id' do
+      expect{page.driver.submit :delete, project_path(id: 999), nil}
+      .to raise_error( ActionController::RoutingError)
+    end
 
-  #   visit shippings_path
-  #   click_link "Delete"
+    scenario "should be able to see details of created project", js: true do
 
-  #   expect(page).to have_content("Destroyed successfully")
-  # end
+      visit project_path(@project)
 
-  # scenario 'delete should change number of resources' do
-  #   resource1, resource2 = create_resources
-  #   create_shipping_with_dependencies(resource1, resource2)
-    
-  #   visit shippings_path
-  #   click_link "Delete"
-  #   reload_resources([resource1, resource2])
+      expect(page).to have_content("Project details")
+    end
 
-  #   expect(resource1.count).to eq(BigDecimal('-3.5'))
-  #   expect(resource2.count).to eq(BigDecimal('-1.5'))
-  # end
+    scenario "should display all details on show page", js: true do
+      project = @project.decorate
 
-  # scenario 'raise not found for not existing id' do
-  #   expect{page.driver.submit :delete, shipping_path(id: 999), nil}
-  #   .to raise_error( ActionController::RoutingError)
-  # end
+      visit project_path(project)
 
-  # scenario "should be able to see details of created shipping" do
-  #   resource1, resource2 = create_resources
-  #   create_shipping_with_dependencies(resource1, resource2)
+      labels = all("h5").map(&:text)
 
-  #   visit shippings_path
-  #   click_link "Show"
+      expect(page).to have_content(project.shipping_date)
+      expect(page).to have_content('розхід')
+      expect(labels).to include("5 m2", "3 m3")
+    end
 
-  #   expect(page).to have_content("Shipping details")
-  # end
+    scenario "should show price in 3 currencies", js: true do
 
-  # scenario "should display all details on show page", js: true do
-  #   resource1, resource2 = create_resources
-  #   shipping = create_shipping_with_dependencies(resource1, resource2)
+      visit projects_path
+      click_link "Show"
 
-  #   visit shippings_path
-  #   click_link "Show"
-  #   labels = all("h5").map(&:text)
+      expect(page).to have_content('79.92')
+      expect(page).to have_content('71.92')
+      expect(page).to have_content('63.92')
+    end
 
-  #   expect(page).to have_content(shipping.shipping_date.strftime("%d/%m/%Y"))
-  #   expect(page).to have_content('прихід')
-  #   expect(labels).to include("5 m2", "3 m3")
-  # end
+    scenario "should show state" do
+      visit project_path(@project)
 
-  # scenario "should calculate money on show page", js: true do
-  #   resource1, resource2 = create_resources
-  #   shipping = create_shipping_with_dependencies(resource1, resource2)
+      expect(page).to have_content('Saved project')
+    end
 
-  #   visit shippings_path
-  #   click_link "Show"
+    scenario "should have approve button" do
+      visit project_path(@project)
 
-  #   expect(page).to have_content("Sum")
-  # end
+      click_link "Approve"
+      
+      expect(page).to have_content('Approved')
+    end
 
-  # scenario "should show price in 3 currencies", js: true do
-  #   resource1, resource2 = create_resources
-  #   shipping = create_shipping_with_dependencies(resource1, resource2)
 
-  #   visit shippings_path
-  #   click_link "Show"
+  end
 
-  #   expect(page).to have_content('79.92')
-  #   expect(page).to have_content('71.92')
-  #   expect(page).to have_content('63.92')
-  # end
+  scenario "can change resources by approving project" do
+    resource1, resource2 = create_resources
+    @project = Project.create do |p|
+      p.shipping = create_shipping_with_dependencies(resource1, resource2)
+    end
+
+    visit project_path(@project)
+
+    click_link "Approve"
+
+    reload_resources([resource1, resource2])
+
+    expect(resource1.count).to eq(BigDecimal('-3.5'))
+    expect(resource2.count).to eq(BigDecimal('-1.5'))
+  end
 
   def create_shipping_with_dependencies(resource1, resource2)
     project_prototype = create(:three_materials, structure: {resource1.id => 5, resource2.id => 3})
-    create(:income_shipping, project_prototype: project_prototype)
+    create(:outcome_shipping, project_prototype: project_prototype)
+  end
+
+  def create_project
+    create_shipping('project')
+  end
+
+  def create_project_with_implicit_prototype
+    visit projects_path
+    click_link "New project"
+
+    click_link "Use Existing"
+    wait_for_ajax
+
+    fill_in('shipping_shipping_date', with: '2017-03-27')
+    select('Project 23 - 2017-03-27', from: 'existing_prototype')
+
+    click_button "Save project"
   end
 
   def reload_resources(resources)
@@ -169,6 +177,6 @@ feature 'CRUD', :projects do
   end
 
   def new_shipping_labels
-    ["Type", "Shipping date", "Resource", "Number", "Name"]
+    ["Shipping date", "Resource", "Number", "Name"]
   end
 end

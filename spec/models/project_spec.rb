@@ -43,8 +43,13 @@ RSpec.describe Project, type: :model do
         expect(subject.may_approve?).to be true
       end
 
-      it "not responds to #build?, #complete?, #reset?" do
-        responses = responds_to_transitions([:build, :complete, :reset])
+      it "responds to transition method" do
+        allow(subject).to receive(:shipping).and_return(true)
+        expect(subject.may_reset?).to be true
+      end
+
+      it "not responds to #build?, #complete?" do
+        responses = responds_to_transitions([:build, :complete])
 
         expect(responses).to all( be false )
       end
@@ -52,6 +57,13 @@ RSpec.describe Project, type: :model do
       it "transitions from state new to state built"  do
         subject.shipping = build(:shipping)
         expect{subject.approve}.to change{subject.aasm_state}.from('built').to('approved')
+      end
+
+      it "shouldn't  revert package while transition to :reset" do
+        subject.shipping = build(:shipping)
+
+        expect(subject.shipping).to_not receive(:revert_package)
+        subject.reset
       end
     end
 
@@ -109,6 +121,7 @@ RSpec.describe Project, type: :model do
         expect(subject.shipping).to receive(:revert_package)
         subject.reset
       end
+
     end
   end
 
@@ -130,6 +143,16 @@ RSpec.describe Project, type: :model do
       end
 
       expect(project).to be_built
+    end
+  end
+
+  describe ".all_states" do
+    it "returns array of 4 elements" do
+      expect(Project.all_states.count).to eq(4)
+    end
+
+    it "returns :new, :built, :approved, :completed" do
+      expect(Project.all_states).to include(:new, :built, :approved, :completed)
     end
   end
 

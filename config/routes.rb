@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :project_prototypes, only: :show
+
   resources :activities
   get 'structure_elements/new'
 
@@ -21,5 +23,6 @@ Rails.application.routes.draw do
   resources :daily_currencies
   resources :shippings
   resources :resources
+  resources :projects
   root 'welcome#index'
 end

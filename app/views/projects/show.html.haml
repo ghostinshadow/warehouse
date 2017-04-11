@@ -1,0 +1,13 @@
+= render partial: 'shippings/details', locals: {shipping: @project.shipping.decorate, money_calculator: @money_calculator, title: "Project details"}
+%hr
+.row
+  .col
+  .col-6
+    .card.card-inverse.card-primary.mb-3
+      .card-block
+        %h4.card-title= "State"
+        %blockquote.card-blockquote.text-center
+          %h5= project.status
+        - if project.built?
+          = link_to "Approve", project_path(project), method: :put, class: "btn btn-success"
+  .col

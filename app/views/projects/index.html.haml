@@ -1,0 +1,10 @@
+%h3= "Projects"
+
+%table.table
+  %thead
+    %th=  "Status"
+    %th=  "Shipping date"
+    %th=  "Name"
+  %tbody
+    = render @projects
+= link_to "New project", new_project_path, class: 'btn btn-info'

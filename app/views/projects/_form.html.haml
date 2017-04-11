@@ -1,0 +1,20 @@
+%h3= title
+
+= form_for(@shipping, url: url, class: "form-control") do |f|
+  .row
+    .col
+      = f.label "Shipping date"
+      = f.text_field :shipping_date, class: 'datepicker form-control'
+    .col
+      = label_tag "Name"
+      = select_tag 'existing_prototype', options_for_select(@existing_prototypes), prompt: t('.choose_category'), class: 'form-control'
+  %br                
+  #prototype_template
+  %br
+  %hr
+  = f.submit submit_button, class: "btn btn-primary btn-round"
+
+:javascript
+  $("#existing_prototype").change(function(){
+    Helpers.sendAjaxRequest("/project_prototypes/" + ($(this).val() || 0));
+  })

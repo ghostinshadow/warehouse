@@ -86,9 +86,9 @@ RSpec.shared_context "shipping activities", :shared_context => :metadata do
     [r1, r2]
   end
 
-  def create_shipping(&block)
-    visit shippings_path
-    click_link "New shipping"
+  def create_shipping(name = 'shipping' ,&block)
+    visit public_send("#{name}s_path")
+    click_link "New #{name}"
 
     choose_date_and_type(&block)
 
@@ -98,7 +98,7 @@ RSpec.shared_context "shipping activities", :shared_context => :metadata do
 
     fill_resource("bottom", 6.7)
 
-    click_button "Save shipping"
+    click_button "Save #{name}"
   end
 
   def fill_prototype_name(value)
@@ -107,7 +107,8 @@ RSpec.shared_context "shipping activities", :shared_context => :metadata do
 
   def fill_resource(option, value)
     @count ||= 1
-    click_link "Add resource"
+
+    click_link "Add resource", visible: true
     wait_for_ajax
     select(option, from: "project_prototype_structure_resource_id_#{@count}")
     fill_in("project_prototype_structure_resource_name_#{@count}", with: value)
@@ -115,8 +116,8 @@ RSpec.shared_context "shipping activities", :shared_context => :metadata do
   end
 
   def choose_date_and_type
-    fill_in( 'shipping_shipping_date', with: '2017-03-273')
-    yield
+    fill_in( 'shipping_shipping_date', with: '2017-03-27')
+    yield if block_given?
   end
 
   def update_shipping(new_price)
@@ -127,4 +128,5 @@ RSpec.shared_context "shipping activities", :shared_context => :metadata do
 
     click_button "Update shipping"
   end
+
 end
