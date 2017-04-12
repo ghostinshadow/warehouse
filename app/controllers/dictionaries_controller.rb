@@ -1,5 +1,7 @@
 class DictionariesController < ApplicationController
+  authorize_resource
   before_action :set_dictionary, only: [:edit, :show, :update]
+  
   def index
     @dictionaries = Dictionary.all.high_level
   end

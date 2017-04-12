@@ -6,7 +6,7 @@ feature 'CRUD', :words do
   include_context "word activities"
 
   before(:each) do
-    @user = create(:user)
+    @user = create(:admin)
     login_as(@user, scope: :user)
     @dictionary = create(:materials_dictionary)
   end

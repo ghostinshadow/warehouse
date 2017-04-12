@@ -80,6 +80,7 @@ GEM
       activesupport (>= 3.0.0)
       uniform_notifier (~> 1.10.0)
     byebug (9.0.6)
+    cancan (1.6.10)
     capistrano (3.0.1)
       i18n
       rake (>= 10.0.0)
@@ -374,6 +375,7 @@ DEPENDENCIES
   bootstrap (~> 4.0.0.alpha3.1)
   bullet
   byebug
+  cancan
   capistrano (~> 3.0.1)
   capistrano-bundler
   capistrano-rails (~> 1.1.0)

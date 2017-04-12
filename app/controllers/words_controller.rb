@@ -1,4 +1,6 @@
 class WordsController < ApplicationController
+  authorize_resource
+
   before_action :set_word, only: [:edit, :update, :destroy]
   before_action :set_dictionary
   decorates_assigned :dictionary

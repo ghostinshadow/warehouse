@@ -2,6 +2,7 @@ class Project < ApplicationRecord
   include AASM
 
   belongs_to :shipping
+  validates_presence_of :shipping
 
   before_create :transition_to_built
   before_destroy :reset_project

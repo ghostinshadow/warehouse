@@ -1,4 +1,6 @@
 class ResourcesController < ApplicationController
+  authorize_resource
+  
   before_action :set_resource, only: [:edit, :update, :destroy]
   before_action :set_dictionaries, only: [:new, :edit, :create, :update]
 

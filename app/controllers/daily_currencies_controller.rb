@@ -1,4 +1,6 @@
 class DailyCurrenciesController < ApplicationController
+  authorize_resource
+  
   before_action :set_daily_currency, only: [:edit, :update, :destroy]
 
   def index

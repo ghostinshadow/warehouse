@@ -5,7 +5,7 @@ feature 'CRUD', :dictionaries do
   include_context "dictionary activities"
 
   before(:each) do
-    @user = create(:user)
+    @user = create(:admin)
     login_as(@user, scope: :user)
   end
 

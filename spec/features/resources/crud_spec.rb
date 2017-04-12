@@ -5,7 +5,7 @@ feature 'CRUD', :resources do
   include_context "resource activities"
   
   before(:each) do
-    @user = create(:user)
+    @user = create(:admin)
     login_as(@user, scope: :user)
   end
 
@@ -59,7 +59,7 @@ feature 'CRUD', :resources do
 
     click_button "Save resource"
 
-    expect(page).to have_content("must exist")
+    expect(page).to have_content("can't be blank")
   end
 
   scenario 'edit existing resource', js: true do

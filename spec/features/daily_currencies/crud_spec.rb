@@ -4,7 +4,7 @@ Warden.test_mode!
 feature 'CRUD', :daily_currencies do
 
   before(:each) do
-    @user = create(:user)
+    @user = create(:admin)
     login_as(@user, scope: :user)
   end
 

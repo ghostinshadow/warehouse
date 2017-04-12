@@ -5,7 +5,7 @@ feature 'CRUD', :shippings do
   include_context 'shipping activities'
   
   before(:each) do
-    @user = create(:user)
+    @user = create(:admin)
     login_as(@user, scope: :user)
   end
 

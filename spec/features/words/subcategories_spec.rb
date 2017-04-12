@@ -5,7 +5,7 @@ Warden.test_mode!
 feature 'CRUD', :subcategories do
 
   before(:each) do
-    @user = create(:user)
+    @user = create(:admin)
     login_as(@user, scope: :user)
     @dictionary = create(:materials_dictionary)
   end

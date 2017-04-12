@@ -1,10 +1,14 @@
 class User < ApplicationRecord
-  enum role: [:user, :vip, :admin]
+  enum role: [:guest, :user, :admin]
   after_initialize :set_default_role, :if => :new_record?
   has_many :activities
 
   def set_default_role
-    self.role ||= :user
+    self.role ||= :guest
+  end
+
+  def has_role?(role)
+    self.role == role.to_s
   end
 
   # Include default devise modules. Others available are:

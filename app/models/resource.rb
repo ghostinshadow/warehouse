@@ -3,6 +3,7 @@ class Resource < ApplicationRecord
   belongs_to :category, class_name: "Word", foreign_key: :category_id, optional: true
   belongs_to :unit, class_name: "Word", foreign_key: :unit_id
   validates_inclusion_of :type, in: %w{ CountlessResource  CountableResource}
+  validates_presence_of :name_id, :unit_id
 
   def self.available_resources
     [["Countable", "CountableResource"],["Countless", "CountlessResource"]]

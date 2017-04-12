@@ -3,9 +3,14 @@ FactoryGirl.define do
     name "Test User"
     sequence(:email){|n| "test#{n}@example.com" }
     password "please123"
+    role "user"
 
-    trait :admin do
+    factory :admin do
       role 'admin'
+    end
+
+    factory :guest do
+      role 'guest'
     end
 
   end

@@ -1,4 +1,6 @@
 class ProjectsController < ApplicationController
+  authorize_resource
+  
   before_action :set_project, only: [:show, :destroy, :update]
   decorates_assigned :project
 
@@ -25,7 +27,6 @@ class ProjectsController < ApplicationController
 
   def create
     build_project
-
     if @project.save
       track_activity(@project)
       redirect_to shippings_path, notice: "Project created"

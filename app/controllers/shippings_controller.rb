@@ -1,4 +1,6 @@
 class ShippingsController < ApplicationController
+  authorize_resource
+  
   before_action :set_shipping, only: [:show, :destroy]
   decorates_assigned :shipping
 
