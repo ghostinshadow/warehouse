@@ -7,7 +7,10 @@ class Ability
     if user.has_role?(:admin)
       can :manage, :all
     elsif user.has_role?(:user)
-      can :read, :all
+      can [:new, :show, :index], [Project, Dictionary,
+       DailyCurrency, Shipping, Resource, Word]
+
+      can :show, ProjectPrototype
 
       can :manage, Project
       cannot :update, Project

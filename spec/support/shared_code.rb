@@ -130,3 +130,30 @@ RSpec.shared_context "shipping activities", :shared_context => :metadata do
   end
 
 end
+
+shared_examples_for "available resource" do |object|
+
+  it "can show #{object}" do
+    is_expected.to be_able_to(:show, object)
+  end
+
+  it "can new #{object}" do
+    is_expected.to be_able_to(:new, object)
+  end
+
+  it "can index #{object}" do
+    is_expected.to be_able_to(:index, object)
+  end
+end
+
+shared_examples_for "admin resource" do |object, klass_name|
+
+  it "should be particular resource" do
+    expect(object.resource_name).to eq(klass_name)
+  end
+
+  it "should be included in menu" do
+    expect(object).to be_include_in_menu
+  end
+
+end

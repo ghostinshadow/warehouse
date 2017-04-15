@@ -32,3 +32,5 @@ units_dictionary = UnitsDictionary.create!(title: "Словник умовних
 %W{ шт.  мм   м/п   м²   м³   л/год }.each do |word|
   units_dictionary.words.create!(body: word)
 end
+
+User.create!(email: 'admin@example.com', role: 'admin', password: 'password', password_confirmation: 'password')

@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   get 'welcome/index'
 
   devise_for :users
+  ActiveAdmin.routes(self)
   resources :dictionaries, except: [:new, :create, :delete, :destroy] do
     resources :words do
       member do
@@ -24,5 +25,7 @@ Rails.application.routes.draw do
   resources :shippings
   resources :resources
   resources :projects
+
+
   root 'welcome#index'
 end

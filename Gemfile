@@ -34,7 +34,8 @@ gem 'thin'
 gem 'pg'
 gem 'draper', github: 'drapergem/draper'
 gem 'activemodel-serializers-xml', git: 'https://github.com/rails/activemodel-serializers-xml'
-# gem "active-admin"
+
+gem 'activeadmin', github: 'activeadmin'
 gem 'aasm'
 gem "cancan"
 

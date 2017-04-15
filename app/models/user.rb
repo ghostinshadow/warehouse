@@ -11,6 +11,12 @@ class User < ApplicationRecord
     self.role == role.to_s
   end
 
+  def approve!
+    return unless guest?
+    self.role = :user
+    self.save
+  end
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
