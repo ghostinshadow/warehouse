@@ -21,7 +21,7 @@ class MoneyCalculator
   end
 
   def currency_symbols
-  	{uah: '₴', usd: '$', eur: "€"}
+  	DailyCurrency.currency_symbols
   end
 
   private

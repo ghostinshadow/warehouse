@@ -19,6 +19,10 @@ describe "ActiveAdmin" do
     it "has dashboard resource" do
       is_expected.to include("dashboards")
     end
+
+    it "has daily_currencies resource" do
+      is_expected.to include("daily_currencies")
+    end
   end
 
   describe "User resource" do
@@ -51,5 +55,17 @@ describe "ActiveAdmin" do
 
   end
 
+  describe "DailyCurrency resource" do
+    let(:resource_class) { 'DailyCurrency' }
+    let(:all_resources)  { ADMIN_RESOURCES }
+    subject{ all_resources[resource_class] }
 
+    it_behaves_like "admin resource", ADMIN_RESOURCES["DailyCurrency"], "DailyCurrency"
+
+    it "has crud actions" do
+      expect(subject.defined_actions).to include(*crud_actions)
+    end
+  end
+
+# "Project","Dictionary","ProjectPrototype", "Shipping","Resource","Word"
 end
