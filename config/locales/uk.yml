@@ -1,7 +1,154 @@
 uk:
+  date:
+    formats:
+      default: "%Y/%m/%d"
+      short: "%b %d"
+      long: "%d, %m, %Y"
   projects:
     states:
       new: "Новий проект"
       built: "Збережений проект"
       approved: "Підтверджений проект"
       completed: "Завершений проект"
+  active_admin:
+    resource:
+      index:
+        eur: "Курс євро"
+        usd: "Курс долара"
+        valid_on: "Дійсний"
+    dashboard: Дешборд
+    dashboard_welcome:
+      welcome: "Вітаю, це сторінка за замовчуванням"
+      call_to_action: "Змініть цю сторінку"
+    view: "Показати"
+    edit: "Змінити"
+    delete: "Видалити"
+    delete_confirmation: "Ви впевнені, що хочете видалити цей елемент?"
+    create_another: "Створити ще %{model}"
+    new_model: "Новий(-а) %{model}"
+    edit_model: "Змінити %{model}"
+    delete_model: "Видалити %{model}"
+    details: "%{model} Деталі"
+    cancel: "Відмінити"
+    empty: "Порожній(я)"
+    previous: "Попередній"
+    next: "Наступний"
+    download: "Завантажити:"
+    has_many_new: "Додати новий(-у) %{model}"
+    has_many_delete: "Видалити"
+    has_many_remove: "Вилучити"
+    filters:
+      buttons:
+        filter: "Застосувати фільтр"
+        clear: "Очистити фільтр"
+      predicates:
+        contains: "Містить"
+        equals: "Дорівнює"
+        starts_with: "Починається з"
+        ends_with: "Закінчується з"
+        greater_than: "Більший аніж"
+        less_than: "Менший аніж"
+    search_status:
+      headline: "Результат пошуку:"
+      current_scope: "Межі:"
+      current_filters: "Поточні критеріх фільтрування:"
+      no_current_filters: "Жодного критерію"
+    status_tag:
+      "yes": "Так"
+      "no": "Ні"
+    main_content: "Ствроріть сторінку %{model}#main_content для відображення контенту."
+    logout: "Вийти"
+    powered_by: "Зроблено за допомогою %{active_admin} %{version}"
+    sidebars:
+      filters: "Фільтр"
+      search_status: "Статус пошуку"
+    pagination:
+      empty: "Не знайдено жодного(-ої) %{model}"
+      one: "Відображено <b>1</b> %{model}"
+      one_page: "Відображено <b>всі %{n}</b> %{model}"
+      multiple: "Відображено %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b> з <b>%{total}</b> доступних"
+      multiple_without_total: "Відображено %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b>"
+      per_page: "Кількість записів на сторінку: "
+      entry:
+        one: "елемент"
+        other: "елементи"
+    any: "Будь-який"
+    blank_slate:
+      content: "%{resource_name} відсутні."
+      link: "Створити"
+    dropdown_actions:
+      button_label: "Дії"
+    batch_actions:
+      button_label: "Дії, що стосуються групи"
+      default_confirmation: "Ви впевнені, що хочете це зробити?"
+      delete_confirmation: "Ви впевнені, що хочете видалити ці %{plural_model}?"
+      succesfully_destroyed:
+        one: "Успішно видалено 1 %{model}"
+        other: "Успішно видалено %{count} %{plural_model}"
+      selection_toggle_explanation: "(перемикач вибору)"
+      link: "Стврорити"
+      action_label: "%{title} Обрано"
+      labels:
+        destroy: "Видалити"
+    comments:
+      created_at: "Створено"
+      resource_type: "Тип ресурсу"
+      author_type: "Автор"
+      body: "Тіло"
+      author: "Автор"
+      title: "Соментар"
+      add: "Додати коментар"
+      delete: "Видалити коментар"
+      delete_confirmation: "Ви впевнені, що бажаєте видалити коментар?"
+      resource: "Ресурс"
+      no_comments_yet: "Коментарі відсутні."
+      author_missing: "Анонім"
+      title_content: "Коментарі (%{count})"
+      errors:
+        empty_text: "Коментар не збережено, відсутній текст."
+    devise:
+      username:
+        title: "Користувач"
+      email:
+        title: "Email"
+      subdomain:
+        title: "Під домен"
+      password:
+        title: "Пароль"
+      sign_up:
+        title: "Реєстрація"
+        submit: "Реєстрація"
+      login:
+        title: "Логування"
+        remember_me: "Запам'ятати мене"
+        submit: "Логування"
+      reset_password:
+        title: "Забули пароль?"
+        submit: "Зкинути пароль"
+      change_password:
+        title: "Змінити пароль"
+        submit: "Підтвердити зміни"
+      unlock:
+        title: "Надіслати ще раз інструкції, щодо розблокування"
+        submit: "Надіслати"
+      resend_confirmation_instructions:
+        title: "Повторно надіслати інструкції, щодо підтвердження"
+        submit: "Надіслати"
+      links:
+        sign_up: "Реєстрація"
+        sign_in: "Логування"
+        forgot_your_password: "Забули пароль?"
+        sign_in_with_omniauth_provider: "Залогуватись з %{provider}"
+        resend_unlock_instructions: "Надіслати ще раз інструкції, щодо розблокування"
+        resend_confirmation_instructions: "Повторно надіслати інструкції, щодо підтвердження"
+    unsupported_browser:
+      headline: "Ваш браузер не підтримує даний плагін."
+      recommendation: "Встановіть новішу версію браузеру."
+      turn_off_compatibility_view: "If you are using IE 9 or later, make sure you <a href=\"http://windows.microsoft.com/en-US/windows7/webpages-look-incorrect-in-Internet-Explorer\">turn off \"Compatibility View\"</a>."
+    access_denied:
+      message: "Ви не маєте доступу."
+    index_list:
+      table: "Таблиця"
+      block: "Список"
+      grid: "Сітка"
+      blog: "Блог"

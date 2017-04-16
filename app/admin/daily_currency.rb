@@ -4,16 +4,20 @@ ActiveAdmin.register DailyCurrency do
 
   index do
     selectable_column
-    column :usd do |daily_currency|
+    column t('.usd'),:usd do |daily_currency|
       daily_currency.display_usd
     end
 
-    column :eur do |daily_currency|
+    column t('.eur'), :eur do |daily_currency|
       daily_currency.display_eur
     end
 
-    column :valid_on
+    column t('.valid_on'), :valid_on
 
   end
+
+  filter :usd, label: I18n.t('active_admin.resource.index.usd')
+  filter :eur, label: I18n.t('active_admin.resource.index.eur')
+  filter :valid_on, label: I18n.t('active_admin.resource.index.valid_on')
 
 end
