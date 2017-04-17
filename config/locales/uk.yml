@@ -4,12 +4,35 @@ uk:
       default: "%Y/%m/%d"
       short: "%b %d"
       long: "%d, %m, %Y"
+  time:
+    formats:
+      long: "%Y-%m-%d %H:%M:%S"
   projects:
     states:
       new: "Новий проект"
       built: "Збережений проект"
       approved: "Підтверджений проект"
       completed: "Завершений проект"
+  resources:
+    title: "Ресурси"
+    price_uah: "Ціна в гривнях за одиницю"
+    price_usd: "Ціна в доларах за одиницю"
+    price_eur: "Ціна в євро за одиницю"
+    count: "Залишилось товару"
+    name: "Назва"
+    category: "Категорія"
+    unit: "Одиниці виміру"
+  daily_currencies:
+    title: "Курс валют"
+    usd: "Курс долара"
+    eur: "Kyрс євро"
+    valid_on: "Дійсний"
+  users:
+    email: "Email"
+    name: "Ім'я"
+    role: "Роль"
+    plural: "Користувачі"
+
   active_admin:
     resource:
       index:

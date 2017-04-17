@@ -5,6 +5,14 @@ describe "ActiveAdmin" do
     [:create, :new, :update, :edit, :index, :show, :destroy]
   end
 
+  def read_delete_actions
+    [:index, :show, :destroy]
+  end
+
+  def change_actions
+    [:create, :update]
+  end
+
   describe "resources" do
     subject { ADMIN_RESOURCES.keys.map(&:route_key) }
 
@@ -66,8 +74,12 @@ describe "ActiveAdmin" do
 
     it_behaves_like "admin resource", ADMIN_RESOURCES["DailyCurrency"], "DailyCurrency"
 
-    it "has crud actions" do
-      expect(subject.defined_actions).to include(*crud_actions)
+    it "has read_delete actions" do
+      expect(subject.defined_actions).to include(*read_delete_actions)
+    end
+
+    it "has cannot create and update" do
+      expect(subject.defined_actions).not_to include(*change_actions)
     end
   end
 
@@ -78,8 +90,12 @@ describe "ActiveAdmin" do
 
     it_behaves_like "admin resource", ADMIN_RESOURCES["Resource"], "Resource"
 
-    it "has crud actions" do
-      expect(subject.defined_actions).to include(*crud_actions)
+    it "has read_delete actions" do
+      expect(subject.defined_actions).to include(*read_delete_actions)
+    end
+
+    it "cannot create and update" do
+      expect(subject.defined_actions).not_to include(*change_actions)
     end
   end
 

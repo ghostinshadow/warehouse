@@ -9,6 +9,11 @@ class Resource < ApplicationRecord
     [["Countable", "CountableResource"],["Countless", "CountlessResource"]]
   end
 
+  def self.price_header(currency)
+    locale = I18n.t("resources.price_#{currency}")
+    "#{locale} (#{DailyCurrency.currency_symbols[currency]})"
+  end
+
   def self.options
     all.map{|r| [r.name_body, r.id]}
   end

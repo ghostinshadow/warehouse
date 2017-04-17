@@ -1,5 +1,13 @@
 en:
   hello: "Hello world"
+  resources:
+    name: "Name"
+    category: "Category"
+    unit: "Unit"
+    price_uah: "Price in uah"
+    price_usd: "Price in usd"
+    price_eur: "Price in eur"
+    count: "Left in stock"
   projects:
     states:
       new: "New project"
