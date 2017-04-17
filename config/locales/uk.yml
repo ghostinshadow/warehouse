@@ -40,6 +40,11 @@ uk:
     word: Батьківське слово
     plural: "Словники"
     singular: "Словник"
+  words:
+    plural: Слова
+    singular: Слово
+    body: Тіло
+    dictionary: "Словник"
   active_admin:
     resource:
       index:
