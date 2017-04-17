@@ -9,6 +9,10 @@ describe "ActiveAdmin" do
     [:index, :show, :destroy]
   end
 
+  def read_update_actions
+    [:index, :show, :update]
+  end
+
   def change_actions
     [:create, :update]
   end
@@ -99,5 +103,21 @@ describe "ActiveAdmin" do
     end
   end
 
-# "Project","Dictionary","ProjectPrototype", "Shipping","Resource","Word"
+  describe "Dictionary resource" do
+    let(:resource_class) { 'Dictionary' }
+    let(:all_resources)  { ADMIN_RESOURCES }
+    subject{ all_resources[resource_class] }
+
+    it_behaves_like "admin resource", ADMIN_RESOURCES["Dictionary"], "Dictionary"
+
+    it "has read_delete actions" do
+      expect(subject.defined_actions).to include(*[:index, :show])
+    end
+
+    it "has cannot create and update" do
+      expect(subject.defined_actions).not_to include(*[:create])
+    end
+  end
+
+# "Project","Dictionary","ProjectPrototype", "Shipping", "Word"
 end

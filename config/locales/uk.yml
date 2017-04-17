@@ -1,4 +1,5 @@
 uk:
+  n_a: "не доступне"
   date:
     formats:
       default: "%Y/%m/%d"
@@ -32,7 +33,13 @@ uk:
     name: "Ім'я"
     role: "Роль"
     plural: "Користувачі"
-
+    singular: "Користувач"
+  dictionaries:
+    title: "Тип словника"
+    words_count: Кількість слів
+    word: Батьківське слово
+    plural: "Словники"
+    singular: "Словник"
   active_admin:
     resource:
       index:

@@ -15,4 +15,8 @@ class Dictionary < ApplicationRecord
   def subtypes_allowed?
     false
   end
+
+  def to_human
+    raise "Need to implement in subclass"
+  end
 end

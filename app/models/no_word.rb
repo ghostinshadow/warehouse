@@ -1,6 +1,6 @@
 class NoWord
   def body
-    'not_available'
+    I18n.t('n_a')
   end
 
   def subtype_dictionary

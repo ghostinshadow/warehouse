@@ -60,8 +60,16 @@ ActiveAdmin.register Resource do
     end
   end
 
-  # filter :usd, label: I18n.t('active_admin.resource.index.usd')
-  # filter :eur, label: I18n.t('active_admin.resource.index.eur')
-  # filter :valid_on, label: I18n.t('active_admin.resource.index.valid_on')
+  filter :price_usd, label: Resource.price_header(:usd)
+  filter :price_eur, label: Resource.price_header(:eur)
+  filter :price_uah, label: Resource.price_header(:uah)
+  filter :name, label: I18n.t('resources.name'), as: :select, collection: proc {
+  	dictionary = MaterialsDictionary.last
+  	dictionary.options
+  }
+  filter :unit, label: I18n.t('resources.unit'),  as: :select, collection: proc {
+  	dictionary = UnitsDictionary.last
+  	dictionary.options
+  }
 
 end

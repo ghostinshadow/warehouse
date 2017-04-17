@@ -1,4 +1,5 @@
 en:
+  n_a: "not_available"
   hello: "Hello world"
   resources:
     name: "Name"
