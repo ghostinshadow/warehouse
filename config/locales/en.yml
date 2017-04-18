@@ -28,6 +28,7 @@ en:
       completed: "Completed project"
   dictionaries:
     edit: "Edit dictionary"
+    update: "Update dictionary"
   words:
     body: "Body"
     update: "Update word"

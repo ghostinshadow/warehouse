@@ -58,6 +58,7 @@ uk:
     plural: "Користувачі"
     singular: "Користувач"
   dictionaries:
+    update: "Оновити"
     edit: 'Редагувати'
     words: "Слова в словнику"
     title: "Тип словника"
