@@ -1,28 +1,29 @@
 %h3= title
-
+%br
+= link_to t('back'), resources_path, class: 'btn btn-danger'
 = form_for(@resource, url: url, as: :resource, class: "form-control") do |f|
   .form-group.row
     .col-md-4
-      = f.label "Name"
-      = f.collection_select(:name_id, @materials_dictionary.words, :id, :body, {selected: @resource.name_id, include_blank: t('.choose_name')}, {"class": "btn btn-primary btn-round form-control"})
+      = f.label t('resources.name')
+      = f.collection_select(:name_id, @materials_dictionary.words, :id, :body, {selected: @resource.name_id, include_blank: t('resources.choose_name')}, {"class": "btn btn-primary btn-round form-control"})
     .col-md-4
-      = f.label "Category"
-      = select_tag 'resource[category_id]', options_for_select(@subtype_dictionary.options, @resource.category_id), prompt: t('.choose_category'), class: "btn btn-primary btn-round form-control"
+      = f.label t('resources.category')
+      = select_tag 'resource[category_id]', options_for_select(@subtype_dictionary.options, @resource.category_id), prompt: t('resources.choose_category'), class: "btn btn-primary btn-round form-control"
     .col-md-4
-      = f.label "Unit"
-      = f.collection_select(:unit_id, @units_dictionary.words, :id, :body, {selected: @resource.unit_id, include_blank: t('.choose_unit')}, {class: "btn btn-primary btn-round form-control"})
+      = f.label t('resources.unit')
+      = f.collection_select(:unit_id, @units_dictionary.words, :id, :body, {selected: @resource.unit_id, include_blank: t('resources.choose_unit')}, {class: "btn btn-primary btn-round form-control"})
   .form-group.row
     .col-md-3
-      = f.label "Type"
+      = f.label t('resources.type')
       =  select_tag 'resource[type]', options_for_select(Resource.available_resources, @resource.type), {class: "form-control", disabled: @resource.persisted?}
     .col-md-3
-      = f.label "Price(uah)"
+      = f.label t('resources.price_uah')
       = f.text_field :price_uah,  class: "form-control", mask: :float
     .col-md-3
-      = f.label "Price(usd)"
+      = f.label t('resources.price_usd')
       = f.text_field :price_usd,  class: "form-control", mask: :float
     .col-md-3
-      = f.label  "Price(eur)"
+      = f.label  t('resources.price_eur')
       = f.text_field :price_eur,  class: "form-control", mask: :float
   .form-actions
     = f.submit submit_button, class: "btn btn-primary btn-round"

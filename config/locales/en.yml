@@ -6,12 +6,19 @@ en:
     plural: Actions
     delete: Delete
   resources:
+    countable: Countable
+    countless: Countless
+    new: "New resource"
+    create: "Save resource"
+    update: "Update resource"
+    edit: "Edit resource"
     name: "Name"
     category: "Category"
     unit: "Unit"
     price_uah: "Price in uah"
     price_usd: "Price in usd"
     price_eur: "Price in eur"
+    type: Type
     count: "Left in stock"
   projects:
     states:

@@ -9,5 +9,5 @@
   %td= resource.price_eur
   %td= resource.count
   %td
-    = link_to "Edit resource", edit_resource_path(resource), class: 'btn btn-warning'
-    = link_to "Delete", resource_path(resource), class: 'btn btn-danger', method: :delete, data: {confirm: "Are you sure?"}
+    = link_to t('resources.edit'), edit_resource_path(resource), class: 'btn btn-warning'
+    = link_to t('actions.delete'), resource_path(resource), class: 'btn btn-danger', method: :delete, data: {confirm: t('r_u_sure')}

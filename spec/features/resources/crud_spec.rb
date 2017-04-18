@@ -109,6 +109,6 @@ feature 'CRUD', :resources do
   end
 
   def new_resource_labels
-    ["Name", "Category", "Unit", "Type", "Price(uah)", "Price(usd)", "Price(eur)"]
+    ["Name", "Category", "Unit", "Type", "Price in uah", "Price in usd", "Price in eur"]
   end
 end

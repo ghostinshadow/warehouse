@@ -6,7 +6,7 @@ class Resource < ApplicationRecord
   validates_presence_of :name_id, :unit_id
 
   def self.available_resources
-    [["Countable", "CountableResource"],["Countless", "CountlessResource"]]
+    [[I18n.t('resources.countable'), "CountableResource"],[I18n.t('resources.countless'), "CountlessResource"]]
   end
 
   def self.price_header(currency)

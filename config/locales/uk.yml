@@ -21,6 +21,17 @@ uk:
       approved: "Підтверджений проект"
       completed: "Завершений проект"
   resources:
+    new: "Новий ресурс"
+    create: "Зберегти ресурс"
+    update: "Оновити ресурс"
+    edit: "Редагувати ресурс"
+    countable: Злічувальний ресурс
+    countless: Незлічуваний ресурс
+    choose_name: "Оберіть назву"
+    choose_category: Оберіть категорію
+    choose_unit: Оберіть одиниці виміру
+    edit: "Редагувати ресурс"
+    type: "Тип"
     plural: "Ресурси"
     singular: 'Ресурс'
     price_uah: "Ціна в гривнях за одиницю"
