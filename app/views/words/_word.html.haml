@@ -2,6 +2,6 @@
   %td= word.body
   %td
     - if word.subtype_dictionary
-      = link_to "Subcategories", dictionary_words_path(word.subtype_dictionary), class: "btn btn-info"
-    = link_to "Edit word", edit_dictionary_word_path(dictionary, word), class: "btn btn-info"
-    = link_to "Delete", dictionary_word_path(dictionary, word), method: :delete, data: { confirm: "Are you sure?" } , class: "btn btn-danger"
+      = link_to t('words.subcategories'), dictionary_words_path(word.subtype_dictionary), class: "btn btn-info"
+    = link_to t('words.edit'), edit_dictionary_word_path(dictionary, word), class: "btn btn-info"
+    = link_to t('actions.delete'), dictionary_word_path(dictionary, word), method: :delete, data: { confirm: t('r_u_sure') } , class: "btn btn-danger"

@@ -1,6 +1,10 @@
 en:
   n_a: "not_available"
   hello: "Hello world"
+  r_u_sure: "Are you sure?"
+  actions:
+    plural: Actions
+    delete: Delete
   resources:
     name: "Name"
     category: "Category"
@@ -15,6 +19,18 @@ en:
       built: "Saved project"
       approved: "Approved project"
       completed: "Completed project"
+  dictionaries:
+    edit: "Edit dictionary"
+  words:
+    body: "Body"
+    update: "Update word"
+    create: "Create word"
+    subcategories: "Subcategories"
+    plural: "Words"
+    new: "New word"
+    edit: "Edit word"
+    back_to_materials: "Back to materials"
+    back_to_dictionaries: "Back to dictionaries"
   active_admin:
     resource:
       index:

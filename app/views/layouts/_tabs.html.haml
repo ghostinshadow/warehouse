@@ -1,0 +1,16 @@
+%ul.nav.nav-pills.nav-fill{style: ''}
+  %li{class: 'nav-item'}
+    = link_to t('activities.plural'), activities_path, class: tab_class_for('activities')
+  %li{class: 'nav-item'}
+    = link_to t('daily_currencies.plural'), daily_currencies_path, class: tab_class_for('daily_currencies')
+  %li{class: 'nav-item'}
+    = link_to t('dictionaries.plural'), dictionaries_path, class: tab_class_for('dictionaries')
+  %li{class: 'nav-item'}
+    = link_to t('projects.plural'), projects_path, class: tab_class_for('projects')
+  %li{class: 'nav-item'}
+    = link_to t('resources.plural'), resources_path, class: tab_class_for('resources')
+  %li{class: 'nav-item'}
+    = link_to t('shippings.plural'), shippings_path, class: tab_class_for('shippings')
+  - if current_user && current_user.admin?
+    %li
+      = link_to t('active_admin.dashboard'), admin_dashboard_path, class: 'nav-link'

@@ -1,9 +1,9 @@
-%h3= "Words"
+%h3= t('words.plural')
 = dictionary.word_dictionary_path
-%table#words
+%table#words.table
   %thead
-    %th= "Name"
-    %th= "Actions"
+    %th= t('words.body')
+    %th= t('actions.plural')
   %tbody
     = render @words
-= link_to "New word", new_dictionary_word_path(dictionary), class: "btn btn-success"
+= link_to t('words.new'), new_dictionary_word_path(dictionary), class: "btn btn-success"

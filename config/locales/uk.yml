@@ -1,5 +1,11 @@
 uk:
+  back: "назад"
   n_a: "не доступне"
+  r_u_sure: "Ви впевнені?"
+  actions:
+    plural: "Дії"
+    edit: "Редагувати"
+    delete: 'Видалити'
   date:
     formats:
       default: "%Y/%m/%d"
@@ -9,14 +15,14 @@ uk:
     formats:
       long: "%Y-%m-%d %H:%M:%S"
   projects:
-
     states:
       new: "Новий проект"
       built: "Збережений проект"
       approved: "Підтверджений проект"
       completed: "Завершений проект"
   resources:
-    title: "Ресурси"
+    plural: "Ресурси"
+    singular: 'Ресурс'
     price_uah: "Ціна в гривнях за одиницю"
     price_usd: "Ціна в доларах за одиницю"
     price_eur: "Ціна в євро за одиницю"
@@ -25,7 +31,8 @@ uk:
     category: "Категорія"
     unit: "Одиниці виміру"
   daily_currencies:
-    title: "Курс валют"
+    plural: "Курс валют"
+    singular: "Поточний курс"
     usd: "Курс долара"
     eur: "Kyрс євро"
     valid_on: "Дійсний"
@@ -36,16 +43,25 @@ uk:
     plural: "Користувачі"
     singular: "Користувач"
   dictionaries:
+    edit: 'Редагувати'
+    words: "Слова в словнику"
     title: "Тип словника"
     words_count: Кількість слів
     word: Батьківське слово
     plural: "Словники"
     singular: "Словник"
   words:
+    create: "Зберегти"
+    update: "Зберегти"
+    subcategories: "Підкатегорії"
     plural: Слова
     singular: Слово
     body: Тіло
     dictionary: "Словник"
+    new: Нове слово
+    edit: Редагувати
+    back_to_materials: "Назад до матеріалів"
+    back_to_dictionaries: "Назад до словників"
   project_prototypes:
     plural: "Прототипи проектів"
     singular: "Прототип проекту"

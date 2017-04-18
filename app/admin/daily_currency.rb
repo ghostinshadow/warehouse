@@ -1,11 +1,11 @@
 ActiveAdmin.register DailyCurrency do
-  menu label: I18n.t('daily_currencies.title')
+  menu label: I18n.t('daily_currencies.plural')
   permit_params :usd, :eur, :valid_on
   decorate_with DailyCurrencyDecorator
 
   actions :index, :show, :destroy
 
-  index title: I18n.t('daily_currencies.title') do
+  index title: I18n.t('daily_currencies.plural') do
     selectable_column
     column t('.usd'),:usd do |daily_currency|
       daily_currency.display_usd
@@ -19,7 +19,7 @@ ActiveAdmin.register DailyCurrency do
     actions
   end
 
-  show title: I18n.t('daily_currencies.title') do
+  show title: I18n.t('daily_currencies.singular') do
     attributes_table do
       row t('daily_currencies.usd') do |currency|
         currency.display_usd

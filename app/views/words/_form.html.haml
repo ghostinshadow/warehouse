@@ -1,5 +1,7 @@
+= link_to t('back'), dictionary_words_path(@dictionary), class: 'btn btn-danger'
+%br
 = form_for([dictionary, @word], url: url, class: "form-control") do |f|
-  = f.label :body
+  = f.label t('words.body'), for: :word_body
   = f.text_field :body
 
   = f.submit submit_header, class: 'btn btn-success'

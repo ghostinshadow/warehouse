@@ -1,8 +1,8 @@
-%h3= "Dictionaries"
-%table#dictionaries
+%h3= t('dictionaries.plural')
+%table#dictionaries.table
   %thead
-    %th= "Title"
-    %th= "Words"
-    %th= "Actions"
+    %th= t('dictionaries.title')
+    %th= t('dictionaries.words')
+    %th= t('actions.plural')
   %tbody
     = render @dictionaries
