@@ -4,9 +4,6 @@ ActiveAdmin.register Word do
 
   actions :index, :show, :destroy
 
-  "body"
-  "dictionary_id"
-
   index title: I18n.t('words.plural') do
     selectable_column
 
@@ -39,5 +36,5 @@ ActiveAdmin.register Word do
   filter :dictionary, label: I18n.t('words.dictionary'), as: :select, collection: proc{
     Dictionary.all.pluck(:title, :id)
   }
-  
+
 end

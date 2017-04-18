@@ -12,6 +12,7 @@ class ApplicationController < ActionController::Base
   end
 
   def set_locale
+    # binding.pry
     I18n.locale = params[:locale] || I18n.default_locale
   end
 

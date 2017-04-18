@@ -10,6 +10,10 @@ class ShippingDecorator < Draper::Decorator
     super.type_name.upcase
   end
 
+  def to_s
+    "#{package} - #{shipping_date}"
+  end
+
   [:structure, :name, :resources].each do |attribute|
     define_method("project_#{attribute}") do
       prototype = project_prototype || NoProjectPrototype.new

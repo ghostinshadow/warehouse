@@ -45,6 +45,12 @@ uk:
     singular: Слово
     body: Тіло
     dictionary: "Словник"
+  project_prototypes:
+    plural: "Прототипи проектів"
+    singular: "Прототип проекту"
+    name: "Назва"
+    structure: "Структура"
+    prototypable: "Частина сутності"
   active_admin:
     resource:
       index:

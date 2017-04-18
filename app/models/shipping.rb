@@ -24,4 +24,5 @@ class Shipping < ApplicationRecord
   def prototype_id
     project_prototype.id
   end
+
 end

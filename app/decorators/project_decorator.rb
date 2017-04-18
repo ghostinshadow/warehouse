@@ -14,6 +14,10 @@ class ProjectDecorator < Draper::Decorator
     shipping.project_name
   end
 
+  def to_s
+    "Проект #{prototype_name} - #{shipping_date}"
+  end
+
   def self.collection_decorator_class
     PaginatingDecorator
   end
