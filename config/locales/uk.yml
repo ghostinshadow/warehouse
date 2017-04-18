@@ -31,11 +31,15 @@ uk:
     category: "Категорія"
     unit: "Одиниці виміру"
   daily_currencies:
+    save: "Зберегти"
+    new: "Новий курс"
     plural: "Курс валют"
     singular: "Поточний курс"
     usd: "Курс долара"
     eur: "Kyрс євро"
     valid_on: "Дійсний"
+    edit: "Редагувати"
+    update: "Оновити"
   users:
     email: "Email"
     name: "Ім'я"

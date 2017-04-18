@@ -31,6 +31,12 @@ en:
     edit: "Edit word"
     back_to_materials: "Back to materials"
     back_to_dictionaries: "Back to dictionaries"
+  daily_currencies:
+    save: "Save currency"
+    new: "New daily currency"
+    plural: "Daily currencies"
+    edit: "Edit daily currency"
+    update: "Update currency"
   active_admin:
     resource:
       index:

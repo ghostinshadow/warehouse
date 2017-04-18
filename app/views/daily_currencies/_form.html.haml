@@ -3,13 +3,13 @@
 = form_for(@daily_currency, url: url, class: "form-control") do |f|
   .form-group.row
     .col-md-4
-      = f.label "USD"
+      = f.label t('daily_currencies.usd')
       = f.text_field :usd,  class: "form-control", mask: :float
     .col-md-4
-      = f.label "EUR"
+      = f.label t('daily_currencies.eur')
       = f.text_field :eur,  class: "form-control", mask: :float
     .col-md-4
-      = f.label  "Valid on"
+      = f.label t('daily_currencies.valid_on')
       = f.text_field :valid_on,  class: 'datepicker form-control'
   .form-actions
     = f.submit submit_button, class: "btn btn-primary btn-round"

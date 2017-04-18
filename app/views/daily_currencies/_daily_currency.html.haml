@@ -3,5 +3,5 @@
   %td= daily_currency.eur
   %td= daily_currency.valid_on
   %td
-    = link_to "Edit", edit_daily_currency_path(daily_currency), class: 'btn btn-warning'
-    = link_to "Delete", daily_currency_path(daily_currency), method: :delete, class: 'btn btn-danger'
+    = link_to t('actions.edit'), edit_daily_currency_path(daily_currency), class: 'btn btn-warning'
+    = link_to t('actions.delete'), daily_currency_path(daily_currency), method: :delete, class: 'btn btn-danger'

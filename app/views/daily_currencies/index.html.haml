@@ -1,10 +1,12 @@
-%h3= "Daily currencies"
+%h3= t('daily_currencies.plural')
 
 %table.table
   %thead
-    %th= "USD"
-    %th= "EUR"
-    %th= "Дата"
+    %th= t('daily_currencies.usd')
+    %th= t('daily_currencies.eur')
+    %th= t('daily_currencies.valid_on')
     %th
   %tbody
     = render @daily_currencies
+
+= link_to t('daily_currencies.new'), new_daily_currency_path, class: 'btn btn-info'
