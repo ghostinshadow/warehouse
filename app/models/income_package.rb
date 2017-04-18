@@ -15,6 +15,14 @@ class IncomePackage
     "прихід"
   end
 
+  def outcome?
+    false
+  end
+
+  def income?
+    true
+  end
+
   def process_package
     project_prototype.structure.each do |resource_id, resource_num|
       r = Resource.find_by(id: resource_id)

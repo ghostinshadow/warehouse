@@ -18,7 +18,7 @@ class Shipping < ApplicationRecord
   end
 
   def outcome_package?
-    package_variant == AVAILABLE_TYPES.last
+    package.outcome?
   end
 
   def prototype_id

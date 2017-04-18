@@ -51,6 +51,11 @@ uk:
     name: "Назва"
     structure: "Структура"
     prototypable: "Частина сутності"
+  shippings:
+    plural: "Всі замовлення"
+    singular: Замовлення
+    package: Тип
+    shipping_date: Дата замовлення
   active_admin:
     resource:
       index:

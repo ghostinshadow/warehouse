@@ -11,6 +11,14 @@ class OutcomePackage
     "розхід"
   end
 
+  def outcome?
+    true
+  end
+
+  def income?
+    false
+  end
+
   def project_prototype
     ProjectPrototype.find_by(prototypable_type: "Shipping", prototypable_id: @shipping_id)
   end
