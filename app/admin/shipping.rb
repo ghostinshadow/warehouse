@@ -33,6 +33,12 @@ ActiveAdmin.register Shipping do
       row t('shippings.shipping_date') do |shipping|
         shipping.shipping_date
       end
+
+      row t('project_prototypes.singular') do |shipping|
+        if shipping.project_prototype
+          link_to t('show'),  admin_project_prototype_path(id: shipping.project_prototype.id)
+        end
+      end
     end
   end
 

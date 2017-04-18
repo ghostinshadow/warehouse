@@ -167,5 +167,20 @@ describe "ActiveAdmin" do
     end
   end
 
-# "Project"
+  describe "Shipping resource" do
+    let(:resource_class) { "Project" }
+    let(:all_resources)  { ADMIN_RESOURCES }
+    subject{ all_resources[resource_class] }
+
+    it_behaves_like "admin resource", ADMIN_RESOURCES["Project"], "Project"
+
+    it "has read_delete actions" do
+      expect(subject.defined_actions).to include(*read_delete_actions + [:update])
+    end
+
+    it "has cannot create and update" do
+      expect(subject.defined_actions).not_to include(*change_actions)
+    end
+  end
+
 end

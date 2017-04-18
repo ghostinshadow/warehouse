@@ -22,7 +22,8 @@ class ProjectsController < ApplicationController
     @project.complete
     @project.save
     track_activity(@project)
-    redirect_to project_path(@project), notice: "Approved"
+    # redirect_to project_path(@project), notice: "Approved"
+    redirect_to :back, notice: "Approved"
   end
 
   def create

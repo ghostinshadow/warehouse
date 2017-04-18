@@ -9,6 +9,7 @@ uk:
     formats:
       long: "%Y-%m-%d %H:%M:%S"
   projects:
+
     states:
       new: "Новий проект"
       built: "Збережений проект"
@@ -56,6 +57,19 @@ uk:
     singular: Замовлення
     package: Тип
     shipping_date: Дата замовлення
+  projects:
+    actions:
+      approve: Підтвердити
+    plural: "Проекти"
+    singular: "Проект"
+    status: "Статус"
+    shipping_date: "Дата замовлення"
+    prototype_name: "Назва прототипу"
+    states:
+      new: "Новий проект"
+      built: Збережений проект
+      approved: Опрацюваний проект
+      completed: Підтверджений
   active_admin:
     resource:
       index:
