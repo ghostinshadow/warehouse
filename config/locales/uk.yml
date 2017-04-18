@@ -70,6 +70,11 @@ uk:
       built: Збережений проект
       approved: Опрацюваний проект
       completed: Підтверджений
+  activities:
+    plural: "Нотифікації"
+    user: "Користувач"
+    action: "Дія"
+    trackable: "Об'єкт, що змінювався"
   active_admin:
     resource:
       index:
