@@ -10,6 +10,10 @@ class Shipping < ApplicationRecord
   accepts_nested_attributes_for :project_prototype
 
   delegate :process_package, :revert_package, :type_name, to: :package
+
+  def self.package_options
+    [[I18n.t('resources.income'), I18n.t('resources.outcome')], AVAILABLE_TYPES].transpose
+  end
   
   def package
     return NoPackage.new unless persisted? && package_variant?

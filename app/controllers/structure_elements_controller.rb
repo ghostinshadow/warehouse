@@ -2,6 +2,6 @@ class StructureElementsController < ApplicationController
   def new
     @id = params[:association_id]
     @param_name = "project_prototype[structure]"
-    @resources =  CountableResource.all.includes(:name).options
+    @resources =  CountableResource.all.includes(:name, :category).options
   end
 end

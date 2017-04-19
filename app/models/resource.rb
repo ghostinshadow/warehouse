@@ -15,11 +15,15 @@ class Resource < ApplicationRecord
   end
 
   def self.options
-    all.map{|r| [r.name_body, r.id]}
+    all.map{|r| ["#{r.name_body} #{r.category_body}", r.id]}
   end
 
   def name_body
     name.body
+  end
+
+  def category_body
+    category && category.body
   end
 
   def to_partial_path

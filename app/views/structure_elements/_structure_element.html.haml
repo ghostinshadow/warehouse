@@ -1,9 +1,9 @@
 %div{"class" => "row resource_#{num}"}
   .col
-    = label_tag "Resource"
-    = select_tag "#{@param_name}[resource_id_#{num}]", options_for_select( @resources), include_blank: "Choose mapping", class: 'form-control'
+    = label_tag t('resources.singular')
+    = select_tag "#{@param_name}[resource_id_#{num}]", options_for_select( @resources), include_blank: t('structure_elements.choose_resource'), class: 'form-control'
   .col
-    = label_tag "Number"
-    = text_field_tag "#{@param_name}[resource_name_#{num}]", nil, maxlength: 10 , placeholder: 'Number', class: 'form-control'
+    = label_tag t('structure_elements.number')
+    = text_field_tag "#{@param_name}[resource_name_#{num}]", nil, maxlength: 10 , placeholder: t('structure_elements.number'), class: 'form-control'
   = link_to '', '#', onclick: "removeDeviceConfig(#{num})", class: 'glyphicon glyphicon-remove pull-right'
 %br

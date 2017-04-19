@@ -5,7 +5,13 @@ en:
   actions:
     plural: Actions
     delete: Delete
+    show: Show
   resources:
+    plural: "Resources"
+    singular: "Resource"
+    created: "created"
+    income: "Income"
+    outcome: "Outcome"
     countable: Countable
     countless: Countless
     new: "New resource"
@@ -20,6 +26,17 @@ en:
     price_eur: "Price in eur"
     type: Type
     count: "Left in stock"
+  structure_elements:
+    new: "Add resource"
+    number: "Number"
+  shippings:
+    shipping_date: "Shipping date"
+    type: "Type"
+    name: "Name"
+    new: "New shipping"
+    save: 'Save shipping'
+    details: "Shipping details"
+    package: "Type"
   projects:
     states:
       new: "New project"

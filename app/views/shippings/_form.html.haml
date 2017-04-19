@@ -1,17 +1,17 @@
 %h3= title
-= link_to "Add resource", '#', onclick: "addDeviceMapping('#{ structure_elements_new_path}')", class: 'btn-sm btn-success pull-right'  
+= link_to t('structure_elements.new'), '#', onclick: "addDeviceMapping('#{ structure_elements_new_path}')", class: 'btn-sm btn-success pull-right'  
 
 = form_for(@shipping, url: url, class: "form-control") do |f|
   .row
     .col
-      = f.label "Shipping date"
+      = f.label t('shippings.shipping_date')
       = f.text_field :shipping_date, class: 'datepicker form-control'
     - unless local_assigns[:skip_type]
       .col
-        = f.label "Type"
-        =  select_tag 'shipping[package_variant]', options_for_select(Shipping::AVAILABLE_TYPES, @shipping.package_variant), {class: "form-control", disabled: @shipping.persisted?}
+        = f.label t('shippings.package')
+        =  select_tag 'shipping[package_variant]', options_for_select(Shipping.package_options, @shipping.package_variant), {class: "form-control", disabled: @shipping.persisted?}
     .col
-      = label_tag "Name"
+      = label_tag t('shippings.name')
       = text_field_tag "project_prototype[name]", nil, {class: "form-control"}
   %br                
   .input_templates

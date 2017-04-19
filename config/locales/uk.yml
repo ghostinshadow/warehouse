@@ -6,6 +6,7 @@ uk:
     plural: "Дії"
     edit: "Редагувати"
     delete: 'Видалити'
+    show: "Деталі"
   date:
     formats:
       default: "%Y/%m/%d"
@@ -21,6 +22,9 @@ uk:
       approved: "Підтверджений проект"
       completed: "Завершений проект"
   resources:
+    created: "створив ресурс"
+    income: "прихід"
+    outcome: "розхід"
     new: "Новий ресурс"
     create: "Зберегти ресурс"
     update: "Оновити ресурс"
@@ -41,6 +45,10 @@ uk:
     name: "Назва"
     category: "Категорія"
     unit: "Одиниці виміру"
+  structure_elements:
+    new: "Додати ресурс"
+    number: "Кількість ресурсу"
+    choose_resource: "Оберіть ресурс"
   daily_currencies:
     save: "Зберегти"
     new: "Новий курс"
@@ -85,10 +93,15 @@ uk:
     structure: "Структура"
     prototypable: "Частина сутності"
   shippings:
+    sum: "Сума"
     plural: "Всі замовлення"
     singular: Замовлення
     package: Тип
+    name: "Назва"
     shipping_date: Дата замовлення
+    new: Нове замовлення
+    save: Зберегти
+    details: "Деталі"
   projects:
     actions:
       approve: Підтвердити

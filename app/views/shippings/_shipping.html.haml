@@ -1,6 +1,6 @@
 %tr
-  %td= shipping.package_variant
+  %td= shipping.package
   %td= shipping.shipping_date
   %td
-    = link_to "Show", shipping_path(shipping), class: 'btn btn-info'
-    = link_to "Delete", shipping_path(shipping), method: :delete, class: 'btn btn-danger', data: {confirm: "Are you sure?"} 
+    = link_to t('actions.show') , shipping_path(shipping), class: 'btn btn-info'
+    = link_to t('actions.delete'), shipping_path(shipping), method: :delete, class: 'btn btn-danger', data: {confirm: t('r_u_sure') } 

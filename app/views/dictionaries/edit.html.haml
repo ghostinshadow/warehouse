@@ -1,6 +1,6 @@
 %h3= t('dictionaries.edit')
 = form_for(@dictionary.becomes(Dictionary), class: 'form-control') do |f|
-  = f.label :title
+  = f.label t('dictionaries.title'), for: :dictionary_title
   = f.text_field :title
 
   = f.submit t('dictionaries.update') , class: 'btn btn-success'

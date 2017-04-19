@@ -8,7 +8,7 @@ class OutcomePackage
   end
 
   def type_name
-    "розхід"
+    I18n.t('resources.outcome')
   end
 
   def outcome?

@@ -12,7 +12,7 @@ class IncomePackage
   end
 
   def type_name
-    "прихід"
+    I18n.t('resources.income')
   end
 
   def outcome?

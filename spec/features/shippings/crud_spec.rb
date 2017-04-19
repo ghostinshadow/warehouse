@@ -15,6 +15,7 @@ feature 'CRUD', :shippings do
 
   scenario 'view all shippings' do
     shipping = create(:income_shipping)
+    shipping = shipping.decorate
     visit shippings_path
 
     expect(page).to have_content(shipping.shipping_date)
@@ -32,14 +33,14 @@ feature 'CRUD', :shippings do
 
   scenario 'create shipping income', js: true do
     create_resources
-    create_shipping{ select('IncomePackage', from: 'shipping_package_variant') }
+    create_shipping{ select('Income', from: 'shipping_package_variant') }
 
     expect(page).to have_content("Shipping created")
   end
 
   scenario 'create shipping outcome', js: true do
     create_resources
-    create_shipping{ select('OutcomePackage', from: 'shipping_package_variant') }
+    create_shipping{ select('Outcome', from: 'shipping_package_variant') }
 
     expect(page).to have_content("Shipping created")
   end
@@ -57,7 +58,7 @@ feature 'CRUD', :shippings do
     resource1, resource2 = create_resources
 
     visit new_shipping_path
-    create_shipping{ select('IncomePackage', from: 'shipping_package_variant') }
+    create_shipping{ select('Income', from: 'shipping_package_variant') }
     resource1.reload
     resource2.reload
 
@@ -69,7 +70,7 @@ feature 'CRUD', :shippings do
     resource1, resource2 = create_resources
 
     visit new_shipping_path
-    create_shipping{ select('OutcomePackage', from: 'shipping_package_variant') }
+    create_shipping{ select('Outcome', from: 'shipping_package_variant') }
     reload_resources([resource1, resource2])
 
     expect(resource1.count).to eq(BigDecimal('-5.2'))
@@ -123,7 +124,7 @@ feature 'CRUD', :shippings do
     labels = all("h5").map(&:text)
 
     expect(page).to have_content(shipping.shipping_date.strftime("%d/%m/%Y"))
-    expect(page).to have_content('прихід')
+    expect(page).to have_content('Income')
     expect(labels).to include("5 m2", "3 m3")
   end
 

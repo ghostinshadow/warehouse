@@ -92,7 +92,7 @@ feature 'CRUD', :projects do
       labels = all("h5").map(&:text)
 
       expect(page).to have_content(project.shipping_date)
-      expect(page).to have_content('розхід')
+      expect(page).to have_content('Outcome')
       expect(labels).to include("5 m2", "3 m3")
     end
 

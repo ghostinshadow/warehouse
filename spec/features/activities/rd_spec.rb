@@ -58,19 +58,18 @@ feature 'RD', :activities do
     end
 
     scenario 'list should contain shipping creation activity', js: true do
-      create_shipping{ select('IncomePackage', from: 'shipping_package_variant') }
+      create_shipping{ select('Income', from: 'shipping_package_variant') }
 
       visit activities_path
-
-      expect(page).to have_content('створив прихід')
+      expect(page).to have_content('created Income')
     end
 
     scenario 'list should contain shipping creation activity', js: true do
-      create_shipping{ select('OutcomePackage', from: 'shipping_package_variant') }
+      create_shipping{ select('Outcome', from: 'shipping_package_variant') }
 
       visit activities_path
 
-      expect(page).to have_content('створив розхід')
+      expect(page).to have_content('created Outcome')
     end
 
     scenario 'list should contain shipping destruction activity', js: true do
@@ -93,7 +92,7 @@ feature 'RD', :activities do
 
       visit activities_path
 
-      expect(page).to have_content('створив ресурс')
+      expect(page).to have_content('created metal')
     end
 
     scenario "list should contain resource update activity", js: true do

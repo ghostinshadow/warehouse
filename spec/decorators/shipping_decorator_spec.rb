@@ -13,7 +13,7 @@ RSpec.describe ShippingDecorator do
 
   describe "#package" do
     it "expected to show package name" do
-      expect(subject.package).to eq('прихід')
+      expect(subject.package).to eq('Income')
     end
   end
 
@@ -27,7 +27,7 @@ RSpec.describe ShippingDecorator do
 
   describe "#to_s" do
     it "transforms into string" do
-      expect(subject.to_s).to eq("прихід - 27/03/2017")
+      expect(subject.to_s).to eq("Income - 27/03/2017")
     end
   end
 

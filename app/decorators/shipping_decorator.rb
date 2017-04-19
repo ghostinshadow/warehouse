@@ -7,7 +7,7 @@ class ShippingDecorator < Draper::Decorator
   end
 
   def package
-    super.type_name.upcase
+    super.type_name.capitalize
   end
 
   def to_s
