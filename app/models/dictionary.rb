@@ -17,6 +17,6 @@ class Dictionary < ApplicationRecord
   end
 
   def to_human
-    raise "Need to implement in subclass"
+    raise t('errors.need_to_impl_in_subclass')
   end
 end

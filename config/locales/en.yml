@@ -2,6 +2,8 @@ en:
   n_a: "not_available"
   hello: "Hello world"
   r_u_sure: "Are you sure?"
+  errors:
+    need_to_impl_in_subclass: "Need to implement in subclass"
   actions:
     plural: Actions
     delete: Delete
@@ -78,6 +80,8 @@ en:
     plural: "Daily currencies"
     edit: "Edit daily currency"
     update: "Update currency"
+  activities:
+    plural: Activities
   active_admin:
     resource:
       index:

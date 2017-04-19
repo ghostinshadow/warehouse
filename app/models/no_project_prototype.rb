@@ -1,6 +1,6 @@
 class NoProjectPrototype
   def name
-    "n/a"
+    I18n.t('n_a')
   end
 
   def structure

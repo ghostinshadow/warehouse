@@ -2,6 +2,8 @@ uk:
   back: "назад"
   n_a: "не доступне"
   r_u_sure: "Ви впевнені?"
+  errors:
+    need_to_impl_in_subclass: "Потрібно імплементувати в підкласі"
   controller:
     actions:
       created: Успішно створено
