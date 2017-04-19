@@ -77,7 +77,7 @@ feature 'CRUD', :resources do
     visit resources_path
     click_link "Delete"
 
-    expect(page).to have_content("Destroyed successfully")
+    expect(page).to have_content("Deleted successfully")
   end
 
   scenario 'impossible to update with empty' do

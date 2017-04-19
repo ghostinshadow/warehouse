@@ -2,7 +2,7 @@ class ActivityDecorator < Draper::Decorator
   delegate_all
 
   def render_activity
-    "#{user.email}" + " " + render_partial 
+    "#{user.email}" + " " + render_partial
   end
 
   def trackable_name
@@ -11,7 +11,7 @@ class ActivityDecorator < Draper::Decorator
 
   def render_partial
     locals = {activity: object, presenter: self}
-    locals[trackable_name.to_sym] = object.trackable
+    assign_object_to_locals(locals)
     h.render partial: partial_path, locals: locals
   end
 
@@ -21,5 +21,15 @@ class ActivityDecorator < Draper::Decorator
 
   def self.collection_decorator_class
     PaginatingDecorator
+  end
+
+  private
+
+  def assign_object_to_locals(locals)
+    if trackable
+      locals[trackable_name.to_sym] = trackable.decorate
+    else
+      locals[trackable_name.to_sym] = nil
+    end
   end
 end

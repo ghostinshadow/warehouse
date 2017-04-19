@@ -2,6 +2,13 @@ uk:
   back: "назад"
   n_a: "не доступне"
   r_u_sure: "Ви впевнені?"
+  controller:
+    actions:
+      created: Успішно створено
+      updated: Успішно оновлено
+      deleted: Успішно видалено
+      not_found: Не знайдено
+      approved: Підтверджено
   actions:
     plural: "Дії"
     edit: "Редагувати"

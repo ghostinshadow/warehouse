@@ -9,7 +9,7 @@ class DictionariesController < ApplicationController
   def update
     if @dictionary.update_attributes(dictionary_params)
       track_activity(@dictionary)
-      redirect_to dictionaries_path, notice: "Successfully updated"
+      redirect_to dictionaries_path, notice: t('controller.actions.updated')
     else
       flash[:error] = @dictionary.errors.messages.to_s
       render :edit
@@ -30,6 +30,6 @@ class DictionariesController < ApplicationController
 
   def set_dictionary
     @dictionary = Dictionary.find_by(id: params[:id])
-    raise ActionController::RoutingError.new("Not Found") unless @dictionary
+    raise ActionController::RoutingError.new(t('controller.actions.not_found')) unless @dictionary
   end
 end

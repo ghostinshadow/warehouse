@@ -30,7 +30,7 @@ class WordsController < ApplicationController
   def update
     if @word.update_attributes(word_params)
       track_activity(@word)
-      redirect_to dictionary_words_path(@dictionary), notice: "Successfully updated"
+      redirect_to dictionary_words_path(@dictionary), notice: t('controller.actions.updated')
     else
       flash[:error] = @word.errors.messages.to_s
       render :edit
@@ -40,7 +40,7 @@ class WordsController < ApplicationController
   def destroy
     @word.destroy
     track_activity(@word)
-    redirect_to dictionary_words_path(@dictionary), notice: "Successfully deleted"
+    redirect_to dictionary_words_path(@dictionary), notice: t('controller.actions.deleted')
   end
 
   def subtypes
@@ -52,12 +52,12 @@ class WordsController < ApplicationController
 
   def set_dictionary
     @dictionary = Dictionary.find_by(id: params[:dictionary_id])
-    raise ActionController::RoutingError.new('Not Found') unless @dictionary
+    raise ActionController::RoutingError.new(t('controller.actions.not_found')) unless @dictionary
   end
 
   def set_word
     @word = Word.find_by(id: params[:id])
-    raise ActionController::RoutingError.new('Not Found') unless @word
+    raise ActionController::RoutingError.new(t('controller.actions.not_found')) unless @word
   end
 
   def word_params

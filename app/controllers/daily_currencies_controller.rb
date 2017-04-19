@@ -14,7 +14,7 @@ class DailyCurrenciesController < ApplicationController
   def create
     @daily_currency = DailyCurrency.new(daily_currency_params)
     if @daily_currency.save
-      redirect_to daily_currencies_path, notice: "Created successfully"
+      redirect_to daily_currencies_path, notice: t('controller.actions.created')
     else
       flash[:error] = @daily_currency.errors.messages.to_s
       render :new
@@ -26,7 +26,7 @@ class DailyCurrenciesController < ApplicationController
 
   def update
     if @daily_currency.update_attributes(daily_currency_params)
-      redirect_to daily_currencies_path, notice: "Updated successfully"
+      redirect_to daily_currencies_path, notice: t('controller.actions.update')
     else
       flash[:error] = @daily_currency.errors.messages.to_s
       render :edit
@@ -35,14 +35,14 @@ class DailyCurrenciesController < ApplicationController
 
   def destroy
     @daily_currency.destroy
-    redirect_to daily_currencies_path, notice: "Deleted successfully"
+    redirect_to daily_currencies_path, notice: t('controller.actions.deleted')
   end
 
   private
 
   def set_daily_currency
     @daily_currency = DailyCurrency.find_by(id: params[:id])
-    raise ActionController::RoutingError.new("Not Found") unless @daily_currency
+    raise ActionController::RoutingError.new(t('controller.actions.not_found')) unless @daily_currency
   end
 
   def daily_currency_params

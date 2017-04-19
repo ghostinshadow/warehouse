@@ -29,7 +29,7 @@ class ShippingsController < ApplicationController
     if @shipping.save
       @shipping.process_package
       track_activity(@shipping)
-      redirect_to shippings_path, notice: "Shipping created"
+      redirect_to shippings_path, notice: t('controller.actions.created')
     else
       flash[:error] = @shipping.errors.messages.to_s
       render :new
@@ -40,14 +40,14 @@ class ShippingsController < ApplicationController
     @shipping.revert_package
     @shipping.destroy
     track_activity(@shipping)
-    redirect_to shippings_path, notice: "Destroyed successfully"
+    redirect_to shippings_path, notice: t('controller.actions.deleted')
   end
 
   private
 
   def set_shipping
     @shipping = Shipping.find_by(id: params[:id])
-    raise ActionController::RoutingError.new('Not Found') unless @shipping
+    raise ActionController::RoutingError.new(t('controller.actions.not_found')) unless @shipping
   end
 
   def shipping_params

@@ -36,14 +36,14 @@ feature 'CRUD', :projects do
     create_resources
     create_project
 
-    expect(page).to have_content("Project created")
+    expect(page).to have_content("Created successfully")
   end
 
   scenario 'create project using existing prototype', js: true do
     create_shipping_with_dependencies(*create_resources)
     create_project_with_implicit_prototype
 
-    expect(page).to have_content("Project created")
+    expect(page).to have_content("Created successfully")
   end
 
   scenario 'display validation messages for empty shipping' do
@@ -68,7 +68,7 @@ feature 'CRUD', :projects do
       visit projects_path
       click_link "Delete"
 
-      expect(page).to have_content("Destroyed successfully")
+      expect(page).to have_content("Deleted successfully")
     end
 
 

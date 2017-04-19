@@ -7,6 +7,13 @@ en:
     delete: Delete
     show: Show
     approve: "Approve"
+  controller:
+    actions:
+      created: Created successfully
+      updated: Updated successfully
+      deleted: Deleted successfully
+      approved: Approved
+      not_found: Not Found
   resources:
     plural: "Resources"
     singular: "Resource"

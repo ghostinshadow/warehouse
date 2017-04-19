@@ -23,14 +23,14 @@ class ProjectsController < ApplicationController
     @project.save
     track_activity(@project)
     # redirect_to project_path(@project), notice: "Approved"
-    redirect_to :back, notice: "Approved"
+    redirect_to :back, notice: t('controller.actions.approved')
   end
 
   def create
     build_project
     if @project.save
       track_activity(@project)
-      redirect_to projects_path, notice: "Project created"
+      redirect_to projects_path, notice: t('controller.actions.created')
     else
       flash[:error] = @project.errors.messages.to_s
       render :new
@@ -39,14 +39,14 @@ class ProjectsController < ApplicationController
 
   def destroy
   	@project.destroy
-  	redirect_to projects_path, notice: "Destroyed successfully"
+  	redirect_to projects_path, notice: t('controller.actions.deleted')
   end
 
   private
 
   def set_project
     @project = Project.find_by(id: params[:id])
-    raise ActionController::RoutingError.new("Not found") unless @project
+    raise ActionController::RoutingError.new(t('controller.actions.not_found')) unless @project
   end
 
   def build_project

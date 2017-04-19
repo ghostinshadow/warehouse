@@ -35,14 +35,14 @@ feature 'CRUD', :shippings do
     create_resources
     create_shipping{ select('Income', from: 'shipping_package_variant') }
 
-    expect(page).to have_content("Shipping created")
+    expect(page).to have_content("Created successfully")
   end
 
   scenario 'create shipping outcome', js: true do
     create_resources
     create_shipping{ select('Outcome', from: 'shipping_package_variant') }
 
-    expect(page).to have_content("Shipping created")
+    expect(page).to have_content("Created successfully")
   end
 
   scenario 'display validation messages for empty shipping' do
@@ -85,7 +85,7 @@ feature 'CRUD', :shippings do
     visit shippings_path
     click_link "Delete"
 
-    expect(page).to have_content("Destroyed successfully")
+    expect(page).to have_content("Deleted successfully")
   end
 
   scenario 'delete should change number of resources' do

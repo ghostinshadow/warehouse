@@ -16,7 +16,7 @@ class ResourcesController < ApplicationController
     @resource = Resource.new(resource_params)
     if @resource.save
       track_activity(@resource)
-      redirect_to resources_path, notice: 'Created successfully'
+      redirect_to resources_path, notice: t('controller.actions.created')
     else
       flash[:error] = @resource.errors.messages.to_s
       render :new
@@ -29,7 +29,7 @@ class ResourcesController < ApplicationController
   def update
     if @resource.update_attributes(resource_params)
       track_activity(@resource)
-      redirect_to resources_path, notice: 'Updated successfully'
+      redirect_to resources_path, notice: t('controller.actions.updated')
     else
       flash[:error] = @resource.errors.messages.to_s
       render :edit
@@ -39,7 +39,7 @@ class ResourcesController < ApplicationController
   def destroy
     @resource.destroy
     track_activity(@resource)
-    redirect_to resources_path, notice: 'Destroyed successfully'
+    redirect_to resources_path, notice: t('controller.actions.deleted')
   end
 
   private
@@ -50,7 +50,7 @@ class ResourcesController < ApplicationController
 
   def set_resource
     @resource = Resource.find_by(id: params[:id])
-    raise ActionController::RoutingError.new('Not Found') unless @resource
+    raise ActionController::RoutingError.new(t('controller.actions.not_found')) unless @resource
   end
 
   def resource_params
