@@ -10,3 +10,5 @@
     = render @daily_currencies
 
 = link_to t('daily_currencies.new'), new_daily_currency_path, class: 'btn btn-info'
+%hr
+= paginate @daily_currencies

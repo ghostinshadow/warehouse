@@ -17,3 +17,33 @@
 //= require bootstrap-sprockets
 //= require bootstrap-datepicker.min
 //= require helpers
+
+$.fn.datepicker.dates['uk'] = {
+    days: ["Неділя", "Понеділок", "Вівторок", "Середа", "Четвер", "П'ятниця", "Субота"],
+    daysShort: ["Нед", "Пнд", "Втр", "Срд", "Чтв", "Птн", "Суб"],
+    daysMin: ["Нд", "Пн", "Вт", "Ср", "Чт", "Пт", "Сб"],
+    months: ["Cічень", "Лютий", "Березень", "Квітень", "Травень", "Червень", "Липень", "Серпень", "Вересень", "Жовтень", "Листопад", "Грудень"],
+    monthsShort: ["Січ", "Лют", "Бер", "Кві", "Тра", "Чер", "Лип", "Сер", "Вер", "Жов", "Лис", "Гру"],
+    today: "Сьогодні",
+    clear: "Очистити",
+    format: "dd.mm.yyyy",
+    weekStart: 1
+};
+$(document).ready(function() {
+    $('.datepicker').datepicker({
+        language: 'uk',
+        orientation: "bottom",
+        format: {
+            toDisplay: function(date, format, language) {
+                var d = new Date(date);
+                d.setDate(d.getDate() - 7);
+                return d.toLocaleDateString();
+            },
+            toValue: function(date, format, language) {
+                var d = new Date(date);
+                d.setDate(d.getDate() + 7);
+                return new Date(d);
+            }
+        }
+    });
+})

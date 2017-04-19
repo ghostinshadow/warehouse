@@ -3,6 +3,12 @@ uk:
   n_a: "не доступне"
   r_u_sure: "Ви впевнені?"
   warehouse: "'Склад'"
+  views:
+    pagination:
+      first: Перша
+      previous: Попередня
+      next: Наступна
+      last: Остання
   account:
     edit: 'Редагувати акаунт'
     sign_out: 'Вийти'

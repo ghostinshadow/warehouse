@@ -3,6 +3,12 @@ en:
   hello: "Hello world"
   r_u_sure: "Are you sure?"
   warehouse: "Warehouse"
+  views:
+    pagination:
+      first: First
+      previous: Previous
+      next: Next
+      last: Last
   account:
     edit: 'Edit account'
     sign_out: 'Sign out'

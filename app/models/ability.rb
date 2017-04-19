@@ -3,7 +3,7 @@ class Ability
 
   def initialize(user)
     user ||= User.new
-
+    can :index, :welcome
     if user.has_role?(:admin)
       can :manage, :all
     elsif user.has_role?(:user)

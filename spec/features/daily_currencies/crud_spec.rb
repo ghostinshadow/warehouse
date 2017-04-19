@@ -21,7 +21,7 @@ feature 'CRUD', :daily_currencies do
     expect(page).to have_content(currency.usd)
   end
 
-  scenario 'create currency' do
+  scenario 'create currency', js: true do
     usd, eur = 28.55, 31.5
     create_daily_currency(usd: usd, eur: eur)
 
@@ -30,13 +30,13 @@ feature 'CRUD', :daily_currencies do
   end
 
 
-  scenario 'impossible to create empty daily_currency' do
+  scenario 'impossible to create empty daily_currency', js: true do
     create_daily_currency(usd: nil, eur: nil)
 
     expect(page).to have_content("New daily currency")
   end
 
-  scenario 'display validation messages for empty daily_currency' do
+  scenario 'display validation messages for empty daily_currency', js: true do
     create_daily_currency(usd: nil, eur: nil)
 
     expect(page).to have_content("can't be blank")

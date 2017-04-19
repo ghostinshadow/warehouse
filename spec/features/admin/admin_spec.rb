@@ -63,7 +63,7 @@ describe "ActiveAdmin" do
     let(:all_resources)  { ADMIN_RESOURCES }
     subject{ all_resources[resource_class] }
 
-    it_behaves_like "admin resource", ADMIN_RESOURCES["Comment"], "Comment"
+    # it_behaves_like "admin resource", ADMIN_RESOURCES["Comment"], "Comment"
 
     it "has crud actions" do
       expect(subject.defined_actions).to include(*[:create, :index, :destroy, :show])

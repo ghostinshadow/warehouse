@@ -4,7 +4,7 @@ class DailyCurrenciesController < ApplicationController
   before_action :set_daily_currency, only: [:edit, :update, :destroy]
 
   def index
-    @daily_currencies = DailyCurrency.all
+    @daily_currencies = DailyCurrency.all.desc_order.page(params[:page])
   end
 
   def new

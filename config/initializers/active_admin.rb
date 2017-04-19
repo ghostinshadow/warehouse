@@ -292,6 +292,7 @@ ActiveAdmin.setup do |config|
   # config.order_clause = MyOrderClause
   config.namespace :admin do |admin|
     admin.build_menu :utility_navigation do |menu|
+      menu.add label: "Назад до складу", url: proc { resources_path }
       menu.add label: "Languages" do |lang|
         lang.add label: "English", url: proc { url_for(:locale => 'en') }, id: 'i18n-en', priority: 1
         lang.add label: "Українська", url: proc { url_for(:locale => 'uk') }, id: 'i18n-es', priority: 2

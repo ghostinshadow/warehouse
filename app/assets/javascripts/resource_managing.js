@@ -23,7 +23,6 @@ function addDeviceMapping(url) {
 
 
 $(document).ready(function() {
-    $('.datepicker').datepicker({orientation: "bottom"});
     $(".form-actions").hide();
 })
 

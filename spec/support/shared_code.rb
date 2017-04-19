@@ -92,7 +92,8 @@ RSpec.shared_context "project activities", :shared_context => :metadata do
     click_link "Use Existing"
     wait_for_ajax
 
-    fill_in('shipping_shipping_date', with: '2017-03-27')
+    page.execute_script("$('#shipping_shipping_date').val('21/02/2017')")
+
     select('Project 23 - 2017-03-27', from: 'existing_prototype')
 
     click_button "Save project"
@@ -117,7 +118,7 @@ RSpec.shared_context "daily_currencies activities", :shared_context => :metadata
 
     fill_in('daily_currency_usd', with: usd)
     fill_in('daily_currency_eur', with: eur)
-    fill_in('daily_currency_valid_on', with: "2017-02-03")
+    page.execute_script("$('#daily_currency_valid_on').val('21/02/2017')")
 
     click_button "Save currency"
   end
@@ -168,7 +169,7 @@ RSpec.shared_context "shipping activities", :shared_context => :metadata do
   end
 
   def choose_date_and_type
-    fill_in( 'shipping_shipping_date', with: '2017-03-27')
+    page.execute_script("$('#shipping_shipping_date').val('21/03/2017')")
     yield if block_given?
   end
 

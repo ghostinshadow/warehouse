@@ -7,11 +7,11 @@ class ProjectDecorator < Draper::Decorator
   end
 
   def shipping_date
-    shipping.shipping_date if shipping
+    shipping && shipping.shipping_date
   end
 
   def prototype_name
-    shipping.project_name
+    shipping && shipping.project_name
   end
 
   def to_s
