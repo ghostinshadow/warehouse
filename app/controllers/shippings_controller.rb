@@ -5,7 +5,8 @@ class ShippingsController < ApplicationController
   decorates_assigned :shipping
 
   def index
-    @shippings = ShippingDecorator.decorate_collection(Shipping.all)
+    collection = Shipping.all.desc_order.page(params[:page])
+    @shippings = ShippingDecorator.decorate_collection(collection)
   end
 
   def show

@@ -7,6 +7,9 @@ class Project < ApplicationRecord
   before_create :transition_to_built
   before_destroy :reset_project
 
+  scope :desc_order, -> { order(created_at: :desc)}
+  paginates_per 10
+
   aasm do
     state :new, :initial => true
     state :built, :approved, :completed

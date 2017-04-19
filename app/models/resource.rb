@@ -4,6 +4,8 @@ class Resource < ApplicationRecord
   belongs_to :unit, class_name: "Word", foreign_key: :unit_id
   validates_inclusion_of :type, in: %w{ CountlessResource  CountableResource}
   validates_presence_of :name_id, :unit_id
+  scope :desc_order, -> { order(created_at: :desc)}
+  paginates_per 5
 
   def self.available_resources
     [[I18n.t('resources.countable'), "CountableResource"],[I18n.t('resources.countless'), "CountlessResource"]]

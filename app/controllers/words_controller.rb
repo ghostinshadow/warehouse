@@ -6,7 +6,7 @@ class WordsController < ApplicationController
   decorates_assigned :dictionary
   
   def index
-    @words = @dictionary.words
+    @words = @dictionary.words.page(params[:page])
   end
 
   def new

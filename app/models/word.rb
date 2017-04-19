@@ -5,6 +5,9 @@ class Word < ApplicationRecord
   has_one :subtype_dictionary, class_name: "Dictionary", dependent: :destroy
   after_commit :init_subtype_dictionary, if: -> { dictionary.subtypes_allowed?}
 
+  paginates_per 3
+
+
   private
 
   def init_subtype_dictionary

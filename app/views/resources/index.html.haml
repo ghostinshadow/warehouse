@@ -12,3 +12,5 @@
   %tbody
     = render @resources
 = link_to t('resources.new') , new_resource_path, class: "btn btn-info"
+%hr
+= paginate @resources

@@ -7,3 +7,5 @@
   %tbody
     = render @projects
 = link_to t('projects.new') , new_project_path, class: 'btn btn-info'
+%hr
+= paginate @projects

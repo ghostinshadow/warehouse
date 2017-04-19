@@ -21,4 +21,8 @@ class ShippingDecorator < Draper::Decorator
     end
   end
 
+  def self.collection_decorator_class
+    PaginatingDecorator
+  end
+
 end

@@ -5,7 +5,7 @@ class ResourcesController < ApplicationController
   before_action :set_dictionaries, only: [:new, :edit, :create, :update]
 
   def index
-    @resources = Resource.all
+    @resources = Resource.all.desc_order.page(params[:page])
   end
 
   def new

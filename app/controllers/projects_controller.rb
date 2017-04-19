@@ -5,7 +5,8 @@ class ProjectsController < ApplicationController
   decorates_assigned :project
 
   def index
-    @projects = ProjectDecorator.decorate_collection(Project.all)
+    collection = Project.all.desc_order.page(params[:page])
+    @projects = ProjectDecorator.decorate_collection(collection)
   end
 
   def new
