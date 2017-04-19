@@ -1,5 +1,5 @@
 ActiveAdmin.register Resource do
-  menu label: I18n.t('resources.title')
+  menu label: I18n.t('resources.plural')
 
   permit_params :name_id, :category_id, :unit_id, :type, :price_uah, :price_usd, :price_eur
 
@@ -7,7 +7,7 @@ ActiveAdmin.register Resource do
 
   actions :index, :show, :destroy
 
-  index title: I18n.t('resources.title') do
+  index title: I18n.t('resources.plural') do
     selectable_column
     column t('resources.name'),:name do |resource|
       resource.name_body
@@ -27,7 +27,7 @@ ActiveAdmin.register Resource do
     actions
   end
 
-  show title: I18n.t('resources.title') do
+  show title: I18n.t('resources.singular') do
     attributes_table do
       row t('resources.name') do |resource|
         resource.name_body

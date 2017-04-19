@@ -2,6 +2,12 @@ en:
   n_a: "not_available"
   hello: "Hello world"
   r_u_sure: "Are you sure?"
+  warehouse: "Warehouse"
+  account:
+    edit: 'Edit account'
+    sign_out: 'Sign out'
+    sign_in: 'Sign in'
+    sign_up: 'Sign up'
   errors:
     need_to_impl_in_subclass: "Need to implement in subclass"
   actions:

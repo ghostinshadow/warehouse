@@ -2,6 +2,12 @@ uk:
   back: "назад"
   n_a: "не доступне"
   r_u_sure: "Ви впевнені?"
+  warehouse: "'Склад'"
+  account:
+    edit: 'Редагувати акаунт'
+    sign_out: 'Вийти'
+    sign_in: 'Зайти'
+    sign_up: 'Зареєструватись'
   errors:
     need_to_impl_in_subclass: "Потрібно імплементувати в підкласі"
   controller:

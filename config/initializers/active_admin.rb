@@ -129,7 +129,7 @@ ActiveAdmin.setup do |config|
   # config.comments_order = 'created_at ASC'
   #
   # You can disable the menu item for the comments index page:
-  # config.comments_menu = false
+  config.comments_menu = false
   #
   # You can customize the comment menu:
   # config.comments_menu = { parent: 'Admin', priority: 1 }
@@ -299,14 +299,6 @@ ActiveAdmin.setup do |config|
       menu.add label: proc { display_name current_active_admin_user }, url: '#', id: 'current_user',
         if: proc { current_active_admin_user? }, priority: 3
       admin.add_logout_button_to_menu menu
-    end
-  end
-end
-
-module ActiveAdmin
-  class MenuItem
-    def <=>(item)
-      self.priority <=> item.priority
     end
   end
 end
