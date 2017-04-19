@@ -1,7 +1,4 @@
-%li.list-group-item.justify-content-between
 - if project
-  = "створив " + project.prototype_name
-  %span.badge.badge-default.badge-pill
-    = project.created_at
+  = [ t('projects.created'), project.prototype_name, ' ' ,project.created_at].join
 - else
-  = "створив проект"
+  = t('projects.created')

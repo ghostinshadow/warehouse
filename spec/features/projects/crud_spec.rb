@@ -3,6 +3,7 @@ Warden.test_mode!
 # Feature: CRUD
 feature 'CRUD', :projects do
   include_context 'shipping activities'
+  include_context 'project activities'
 
   before(:each) do
     @user = create(:admin)
@@ -137,28 +138,6 @@ feature 'CRUD', :projects do
 
     expect(resource1.count).to eq(BigDecimal('-3.5'))
     expect(resource2.count).to eq(BigDecimal('-1.5'))
-  end
-
-  def create_shipping_with_dependencies(resource1, resource2)
-    project_prototype = create(:three_materials, structure: {resource1.id => 5, resource2.id => 3})
-    create(:outcome_shipping, project_prototype: project_prototype)
-  end
-
-  def create_project
-    create_shipping('project')
-  end
-
-  def create_project_with_implicit_prototype
-    visit projects_path
-    click_link "New project"
-
-    click_link "Use Existing"
-    wait_for_ajax
-
-    fill_in('shipping_shipping_date', with: '2017-03-27')
-    select('Project 23 - 2017-03-27', from: 'existing_prototype')
-
-    click_button "Save project"
   end
 
   def reload_resources(resources)

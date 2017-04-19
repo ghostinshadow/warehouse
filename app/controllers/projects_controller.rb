@@ -38,6 +38,7 @@ class ProjectsController < ApplicationController
   end
 
   def destroy
+    track_activity(@project)
   	@project.destroy
   	redirect_to projects_path, notice: t('controller.actions.deleted')
   end

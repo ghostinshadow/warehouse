@@ -1,4 +1,4 @@
 - if project
-  = "підтверджено " + project.prototype_name
+  = [t('projects.approved'), ' ', project.prototype_name].join
 - else
-  = "підтверджено проект"
+  = t('projects.approved')

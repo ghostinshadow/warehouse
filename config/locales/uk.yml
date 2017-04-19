@@ -125,6 +125,9 @@ uk:
   projects:
     actions:
       approve: Підтвердити
+    created: "створив проект"
+    deleted: 'видалив проект'
+    approved: "підтверджено проект"
     details: "Деталі проекту"
     save: 'Зберегти проект'
     manual_prototype: Скласти проект

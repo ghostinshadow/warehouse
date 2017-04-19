@@ -167,7 +167,40 @@ feature 'RD', :activities do
   end
 
   context 'projects' do
+    include_context 'shipping activities'
+    include_context 'project activities'
 
+    scenario "list should contain currency create activity", js: true do
+      create_shipping_with_dependencies(*create_resources)
+      create_project_with_implicit_prototype
+      visit activities_path
+
+      expect(page).to have_content('created project')
+    end
+
+    scenario "list should contain currency update activity", js: true do
+      resource1, resource2 = create_resources
+      @project = Project.create do |p|
+        p.shipping = create_shipping_with_dependencies(resource1, resource2)
+      end
+
+      visit project_path(@project)
+      click_link "Approve"
+      visit activities_path
+
+      expect(page).to have_content('approved project')
+    end
+
+    scenario "list should contain currency destroy activity", js: true do
+      Project.create do |p|
+        p.shipping = create_shipping_with_dependencies(*create_resources)
+      end
+      visit projects_path
+      click_link "Delete"
+      visit activities_path
+
+      expect(page).to have_content('deleted project')
+    end
   end
 
 end

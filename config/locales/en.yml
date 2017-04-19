@@ -52,6 +52,9 @@ en:
     package: "Type"
     deleted: deleted income
   projects:
+    approved: approved project
+    created: created project
+    deleted: deleted project
     details: "Project details"
     save: 'Save project'
     manual_prototype: "Manual prototype"
