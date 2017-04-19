@@ -17,6 +17,8 @@ en:
       approved: Approved
       not_found: Not Found
   resources:
+    deleted: deleted resource
+    updated: updated resource
     plural: "Resources"
     singular: "Resource"
     created: "created"
@@ -48,6 +50,7 @@ en:
     save: 'Save shipping'
     details: "Shipping details"
     package: "Type"
+    deleted: deleted income
   projects:
     details: "Project details"
     save: 'Save project'
@@ -62,9 +65,13 @@ en:
       approved: "Approved project"
       completed: "Completed project"
   dictionaries:
+    updated: 'updated dictionary'
     edit: "Edit dictionary"
     update: "Update dictionary"
   words:
+    created: created word
+    updated: 'updated word'
+    deleted: 'deleted word'
     body: "Body"
     update: "Update word"
     create: "Create word"
@@ -75,6 +82,9 @@ en:
     back_to_materials: "Back to materials"
     back_to_dictionaries: "Back to dictionaries"
   daily_currencies:
+    updated_for: updated currency for
+    deleted: "deleted currency"
+    created_for: "created currency for"
     save: "Save currency"
     new: "New daily currency"
     plural: "Daily currencies"

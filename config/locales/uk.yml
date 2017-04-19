@@ -32,6 +32,8 @@ uk:
       approved: "Підтверджений проект"
       completed: "Завершений проект"
   resources:
+    deleted: 'видалив ресурс'
+    updated: 'оновив ресурс'
     created: "створив ресурс"
     income: "прихід"
     outcome: "розхід"
@@ -60,6 +62,9 @@ uk:
     number: "Кількість ресурсу"
     choose_resource: "Оберіть ресурс"
   daily_currencies:
+    updated_for: оновлено курс від
+    deleted: видалено курс
+    created_for: створено курс на
     save: "Зберегти"
     new: "Новий курс"
     plural: "Курс валют"
@@ -76,6 +81,7 @@ uk:
     plural: "Користувачі"
     singular: "Користувач"
   dictionaries:
+    updated: "оновив словник"
     update: "Оновити"
     edit: 'Редагувати'
     words: "Слова в словнику"
@@ -85,6 +91,9 @@ uk:
     plural: "Словники"
     singular: "Словник"
   words:
+    updated: оновив слово
+    created: створив слово
+    deleted: 'видалив слово'
     create: "Зберегти"
     update: "Зберегти"
     subcategories: "Підкатегорії"
@@ -112,6 +121,7 @@ uk:
     new: Нове замовлення
     save: Зберегти
     details: "Деталі"
+    deleted: 'видалив прихід/розхід'
   projects:
     actions:
       approve: Підтвердити

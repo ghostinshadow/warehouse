@@ -23,7 +23,7 @@ feature 'RD', :activities do
       create_word("Hey you")
       visit activities_path
 
-      expect(page).to have_content("створив слово")
+      expect(page).to have_content("created word")
       expect(page).to have_content(@user.email)
     end
 
@@ -35,7 +35,7 @@ feature 'RD', :activities do
       visit activities_path
 
       expect(page).to have_content(@user.email)
-      expect(page).to have_content('змінив слово')
+      expect(page).to have_content('updated word')
       expect(page).to have_content(new_body)
     end
 
@@ -46,7 +46,7 @@ feature 'RD', :activities do
 
       visit activities_path
 
-      expect(page).to have_content('видалив слово')
+      expect(page).to have_content('deleted word')
     end
   end
 
@@ -79,7 +79,7 @@ feature 'RD', :activities do
 
       visit activities_path
 
-      expect(page).to have_content('видалив прихід')
+      expect(page).to have_content('deleted income')
     end
   end
 
@@ -104,7 +104,7 @@ feature 'RD', :activities do
 
       visit activities_path
 
-      expect(page).to have_content('оновив ресурс')
+      expect(page).to have_content('updated resource')
     end
 
     scenario "list should contain resource deletion activity" do
@@ -113,7 +113,7 @@ feature 'RD', :activities do
       click_link "Delete"
       visit activities_path
 
-      expect(page).to have_content('видалив ресурс')
+      expect(page).to have_content('deleted resource')
     end
   end
 
@@ -128,8 +128,45 @@ feature 'RD', :activities do
 
       visit activities_path
 
-      expect(page).to have_content('оновив словник')
+      expect(page).to have_content('updated dictionary')
     end
+
+  end
+
+  context 'daily_currencies' do
+    include_context "daily_currencies activities"
+
+    scenario "list should contain currency update activity", js: true do
+      daily_currency = create(:daily_currency)
+      new_usd, new_eur = 8.99, 9.99
+      visit edit_daily_currency_path(daily_currency)
+      update_daily_currency(usd: new_usd, eur: new_eur)
+
+      visit activities_path
+
+      expect(page).to have_content('updated currency for')
+    end
+
+    scenario "list should contain currency create activity", js: true do
+      usd, eur = 28.55, 31.5
+      create_daily_currency(usd: usd, eur: eur)
+
+      visit activities_path
+
+      expect(page).to have_content('created currency for')
+    end
+
+    scenario "list should contain currency delete activity", js: true do
+      daily_currency = create(:daily_currency)
+      delete_daily_currency
+
+      visit activities_path
+
+      expect(page).to have_content('deleted currency')
+    end
+  end
+
+  context 'projects' do
 
   end
 

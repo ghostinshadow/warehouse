@@ -14,6 +14,7 @@ class DailyCurrenciesController < ApplicationController
   def create
     @daily_currency = DailyCurrency.new(daily_currency_params)
     if @daily_currency.save
+      track_activity(@daily_currency)
       redirect_to daily_currencies_path, notice: t('controller.actions.created')
     else
       flash[:error] = @daily_currency.errors.messages.to_s
@@ -26,6 +27,7 @@ class DailyCurrenciesController < ApplicationController
 
   def update
     if @daily_currency.update_attributes(daily_currency_params)
+      track_activity(@daily_currency)
       redirect_to daily_currencies_path, notice: t('controller.actions.update')
     else
       flash[:error] = @daily_currency.errors.messages.to_s
@@ -34,6 +36,7 @@ class DailyCurrenciesController < ApplicationController
   end
 
   def destroy
+    track_activity(@daily_currency)
     @daily_currency.destroy
     redirect_to daily_currencies_path, notice: t('controller.actions.deleted')
   end

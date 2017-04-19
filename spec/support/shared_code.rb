@@ -79,6 +79,32 @@ RSpec.shared_context "resource activities", :shared_context => :metadata do
   end
 end
 
+RSpec.shared_context "daily_currencies activities", :shared_context => :metadata do
+  
+  def delete_daily_currency
+    visit daily_currencies_path
+    click_link "Delete"
+  end
+
+  def create_daily_currency(usd: , eur: )
+    visit new_daily_currency_path
+
+    fill_in('daily_currency_usd', with: usd)
+    fill_in('daily_currency_eur', with: eur)
+    fill_in('daily_currency_valid_on', with: "2017-02-03")
+
+    click_button "Save currency"
+  end
+
+  def update_daily_currency(usd:, eur: )
+    fill_in('daily_currency_usd', with: usd)
+    fill_in('daily_currency_eur', with: eur)
+
+    click_button "Update currency"
+  end
+
+end
+
 RSpec.shared_context "shipping activities", :shared_context => :metadata do
   def create_resources
     r1 = create(:countable_resource_bottom)
