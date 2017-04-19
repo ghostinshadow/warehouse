@@ -1,10 +1,9 @@
-%h3= "Projects"
-
+%h3= t('projects.plural')
 %table.table
   %thead
-    %th=  "Status"
-    %th=  "Shipping date"
-    %th=  "Name"
+    %th=  t('projects.status')
+    %th=  t('shippings.shipping_date')
+    %th=  t('shippings.name')
   %tbody
     = render @projects
-= link_to "New project", new_project_path, class: 'btn btn-info'
+= link_to t('projects.new') , new_project_path, class: 'btn btn-info'

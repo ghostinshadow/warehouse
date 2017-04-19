@@ -30,7 +30,7 @@ class ProjectsController < ApplicationController
     build_project
     if @project.save
       track_activity(@project)
-      redirect_to shippings_path, notice: "Project created"
+      redirect_to projects_path, notice: "Project created"
     else
       flash[:error] = @project.errors.messages.to_s
       render :new

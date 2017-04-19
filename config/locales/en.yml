@@ -6,6 +6,7 @@ en:
     plural: Actions
     delete: Delete
     show: Show
+    approve: "Approve"
   resources:
     plural: "Resources"
     singular: "Resource"
@@ -17,6 +18,7 @@ en:
     new: "New resource"
     create: "Save resource"
     update: "Update resource"
+    choose_category: "Choose category"
     edit: "Edit resource"
     name: "Name"
     category: "Category"
@@ -38,6 +40,13 @@ en:
     details: "Shipping details"
     package: "Type"
   projects:
+    details: "Project details"
+    save: 'Save project'
+    manual_prototype: "Manual prototype"
+    use_existing: "Use Existing"
+    new: "New project"
+    plural: "Projects"
+    status: "Status"
     states:
       new: "New project"
       built: "Saved project"

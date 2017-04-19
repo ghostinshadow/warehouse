@@ -3,11 +3,11 @@
 = form_for(@shipping, url: url, class: "form-control") do |f|
   .row
     .col
-      = f.label "Shipping date"
+      = f.label t('shippings.shipping_date')
       = f.text_field :shipping_date, class: 'datepicker form-control'
     .col
-      = label_tag "Name"
-      = select_tag 'existing_prototype', options_for_select(@existing_prototypes), prompt: t('.choose_category'), class: 'form-control'
+      = label_tag t('shippings.name')
+      = select_tag 'existing_prototype', options_for_select(@existing_prototypes), prompt: t('resources.choose_category'), class: 'form-control'
   %br                
   #prototype_template
   %br

@@ -1,13 +1,13 @@
-= render partial: 'shippings/details', locals: {shipping: @project.shipping.decorate, money_calculator: @money_calculator, title: "Project details"}
+= render partial: 'shippings/details', locals: {shipping: @project.shipping.decorate, money_calculator: @money_calculator, title: t('projects.details') }
 %hr
 .row
   .col
   .col-6
     .card.card-inverse.card-primary.mb-3
       .card-block
-        %h4.card-title= "State"
+        %h4.card-title= t('projects.status')
         %blockquote.card-blockquote.text-center
           %h5= project.status
         - if project.built?
-          = link_to "Approve", project_path(project), method: :put, class: "btn btn-success"
+          = link_to t('actions.approve') , project_path(project), method: :put, class: "btn btn-success"
   .col

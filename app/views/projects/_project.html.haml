@@ -3,5 +3,5 @@
   %td= project.shipping_date
   %td= project.prototype_name
   %td
-    = link_to "Show", project_path(project), class: 'btn btn-info'
-    = link_to "Delete", project_path(project), method: :delete, class: 'btn btn-danger', data: {confirm: "Are you sure?"} 
+    = link_to t('actions.show') , project_path(project), class: 'btn btn-info'
+    = link_to t('actions.delete'), project_path(project), method: :delete, class: 'btn btn-danger', data: {confirm: t('r_u_sure') } 

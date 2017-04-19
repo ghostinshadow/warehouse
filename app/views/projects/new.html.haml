@@ -1,13 +1,13 @@
 %ul.nav.nav-tabs{:role => "tablist"}
   %li.nav-item
-    %a.nav-link.active{"data-toggle" => "tab", :href => "#manual", :role => "tab"}= t(".manual_prototype")
+    %a.nav-link.active{"data-toggle" => "tab", :href => "#manual", :role => "tab"}= t("projects.manual_prototype")
   %li.nav-item
-    %a.nav-link{"data-toggle" => "tab", :href => "#existing", :role => "tab"}= t(".use_existing")
+    %a.nav-link{"data-toggle" => "tab", :href => "#existing", :role => "tab"}= t("projects.use_existing")
 
 .tab-content
   #manual.tab-pane.active{:role => "tabpanel"}
     %br
-    = render partial: "shippings/form", locals: {title: "New project", url: projects_path, submit_button: 'Save project', skip_type: true}
+    = render partial: "shippings/form", locals: {title: t('projects.new') , url: projects_path, submit_button: t('projects.save') , skip_type: true}
   #existing.tab-pane{:role => "tabpanel"}
     %br
-    = render partial: "projects/form", locals: {title: "New project", url: projects_path, submit_button: "Save project"}
+    = render partial: "projects/form", locals: {title: t('projects.new') , url: projects_path, submit_button: t('projects.save')}
